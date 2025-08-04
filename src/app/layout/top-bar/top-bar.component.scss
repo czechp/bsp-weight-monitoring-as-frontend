@@ -1,0 +1,11 @@
+@import 'src/variables';
+
+.top-bar-container {
+  height: $top-bar-background;
+  background-color: $top-bar-background;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: $border-width solid $layout-border-color;
+}

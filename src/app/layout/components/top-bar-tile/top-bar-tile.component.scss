@@ -1,0 +1,21 @@
+@import "src/variables";
+
+.container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: $body-background;
+  border-radius: 10%;
+}
+
+.icon-el {
+  margin-bottom: .5rem;
+}
+
+

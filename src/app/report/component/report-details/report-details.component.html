@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="container-column">
+    <div class="container-item">
+      <p class="key">Linia</p>
+      <p class="value">{{ report.lineName }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Zmiana</p>
+      <p class="value">{{ report.reportShift }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Produkt</p>
+      <p class="value">{{ report.product.productName }}</p>
+    </div>
+  </div>
+  <div class="container-column">
+    <div class="container-item">
+      <p class="key">Waga OK</p>
+      <p class="value">{{ report.product.productCorrectWeight | twoDigits }} g</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Waga min.</p>
+      <p class="value">{{ report.product.productMinimumWeight | twoDigits }} g</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Waga max.</p>
+      <p class="value">{{ report.product.productMaximumWeight | twoDigits }} g</p>
+    </div>
+  </div>
+  <div class="container-column">
+    <div class="container-item">
+      <p class="key">Wyskość kubka</p>
+      <p class="value">{{ report.product.cupHeight | twoDigits }} mm</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Średnica kubka</p>
+      <p class="value">{{ report.product.cupDiameter | twoDigits }} mm</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Waga kubka</p>
+      <p class="value">{{ report.product.cupWeight | twoDigits }} mm</p>
+    </div>
+  </div>
+  <div class="container-column">
+    <div class="container-item">
+      <p class="key">Status</p>
+      <p class="value">{{ report.reportOpen ? 'Otwarty' : 'Zamknięty' }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Data rozpoczęcia</p>
+      <p class="value">{{ report.startAt | localDateTime }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Data zamknięcia</p>
+      <p class="value">{{ report.closedAt | localDateTime }}</p>
+    </div>
+  </div>
+</div>
+<hr>
+<h1>Pomiary</h1>
+<div class="" *ngFor="let reportItem of report.reportItems">
+  <div class="measurement-row">
+    <div class="measurement-row-content">
+      <div class="container-item">
+        <p class="key">Data pomiaru</p>
+        <p class="value">{{ reportItem.createdAt | localTime }}</p>
+      </div>
+      <div class="container-item">
+        <p class="key">Średni pomiar</p>
+        <p class="value">{{ reportItem.averageWeight | twoDigits }} g</p>
+      </div>
+      <div class="container-item">
+        <p class="key">Odchyłka</p>
+        <p class="value"
+           [ngClass]="{'measurement-ok': reportItem.weightCorrect, 'measurement-nok': !reportItem.weightCorrect}">{{ reportItem.weightDeviation | twoDigits }}
+          g</p>
+      </div>
+    </div>
+    <div class="measurement-row-icon">
+      <fa-icon *ngIf="reportItem.weightCorrect" icon="check" size="3x" class="measurement-ok"/>
+      <fa-icon *ngIf="!reportItem.weightCorrect" icon="xmark" size="3x" class="measurement-nok"/>
+    </div>
+  </div>
+  <hr>
+</div>

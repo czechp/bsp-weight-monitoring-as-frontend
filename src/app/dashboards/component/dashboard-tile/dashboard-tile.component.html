@@ -1,0 +1,16 @@
+<h1>{{_dashboard.name}}</h1>
+
+<div class="content">
+  <div class="icon">
+    <fa-icon  [icon]="['fas', icon]" size="2x"/>
+  </div>
+
+  <div *ngFor="let group of _dashboard.groups">
+    <h2>{{group.name}}</h2>
+    <hr>
+      <div class="item-container">
+          <app-dashboard-item-tile  class="item" *ngFor="let item of group.items" [dashboardItem]="item" />
+      </div>
+    <hr>
+  </div>
+</div>

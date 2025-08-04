@@ -1,0 +1,6 @@
+<div class="container-center">
+  <form method="dialog">
+    <button *ngIf="!user.adminActivation" class="button-success" (click)="activateUser()">Włącz użytkownika</button>
+    <button *ngIf="user.adminActivation" class="button-nok" (click)="deactivateUser()">Wyłącz użytkownika</button>
+  </form>
+</div>

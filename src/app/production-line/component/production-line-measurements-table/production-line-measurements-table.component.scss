@@ -1,0 +1,23 @@
+@import "src/variables";
+
+.container {
+  margin-top: 1rem;
+}
+
+.ok {
+  color: $color-success;
+  border-color: $font-color;
+}
+
+.nok {
+  color: $color-nok;
+  border-color: $font-color;
+}
+
+fa-icon {
+  color: $color-nok;
+}
+
+.line-working{
+  color: $color-success;
+}

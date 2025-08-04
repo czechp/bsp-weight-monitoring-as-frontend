@@ -1,0 +1,10 @@
+<app-page-with-info title="Szczegóły I/O" *ngIf="processValueInfo$ | async as processValueInfo" [info]="processValueInfo">
+  <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="left">
+    <mat-tab label="Edytuj">
+      <app-process-value-form *ngIf="processValueUpdateForm$ | async as processValueUpdateForm" [processValueForm]="processValueUpdateForm" (confirmed)="updateProcessValue()" />
+    </mat-tab>
+    <mat-tab label="Usuń">
+      <app-process-value-delete (processValueDelete)="deleteProcessValue()" />
+    </mat-tab>
+  </mat-tab-group>
+</app-page-with-info>

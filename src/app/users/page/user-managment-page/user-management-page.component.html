@@ -1,0 +1,23 @@
+<ng-container *ngIf="user$ | async as user">
+  <app-page-with-info *ngIf="userInfo$ | async as userInfo" title="Szczegóły użytkownika" [info]="userInfo">
+        <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="left">
+          <mat-tab label="Usuń użytkownika">
+            <div class="margin-top">
+              <app-user-remove (removeUser)="removeUser()"/>
+            </div>
+          </mat-tab>
+          <mat-tab label="Zmień uprawnienia">
+            <div class="margin-top">
+              <app-user-change-role-form *ngIf="userChangeRoleForm$ | async as userChangerRoleForm"
+                                         [changeRoleForm]="userChangerRoleForm" (changeRole)="changeRole()"/>
+            </div>
+          </mat-tab>
+          <mat-tab label="Aktywuj użytkownika">
+            <div class="margin-top">
+              <app-activate-user-form [user]="user" (userActivation)="userActivation($event)"/>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+  </app-page-with-info>
+</ng-container>
+

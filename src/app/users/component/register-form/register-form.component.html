@@ -1,0 +1,18 @@
+<div class="container-center">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label>Username</label>
+    <input type="text" formControlName="username">
+    <app-input-error [formField]="registerForm.get('username')"/>
+    <label>Email</label>
+    <input type="text" formControlName="email">
+    <app-input-error [formField]="registerForm.get('email')"/>
+    <label>Hasło</label>
+    <input type="password" formControlName="password">
+    <app-input-error [formField]="registerForm.get('password')"/>
+    <label>Powtórz hasło</label>
+    <input type="password" formControlName="passwordConfirm">
+    <app-input-error [formField]="registerForm.get('passwordConfirm')"/>
+    <button class="button-ok">OK</button>
+  </form>
+
+</div>

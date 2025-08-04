@@ -1,0 +1,7 @@
+  <h1>{{ productionLine.name }}</h1>
+  <app-production-line-form [productionLineForm]="productionLineForm" [edit]="true" (onSubmit)="modifySubmitted()" />
+  <div class="container-center">
+    <form method="dialog">
+      <button class="button-nok" (click)="deleteOnClick()">Usuń</button>
+    </form>
+  </div>

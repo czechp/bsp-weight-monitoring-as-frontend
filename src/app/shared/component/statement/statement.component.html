@@ -1,0 +1,8 @@
+<div class="container">
+  <div
+    *ngIf="visibility"
+    class="statement"
+    [ngClass]="{'error': error, 'success': success}"
+  >{{ message }}
+  </div>
+</div>

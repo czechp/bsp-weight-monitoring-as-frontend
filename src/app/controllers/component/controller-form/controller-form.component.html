@@ -1,0 +1,40 @@
+<div class="container-center">
+  <form method="dialog" [formGroup]="controllerForm" >
+    <label>Etykieta</label>
+    <input type="text" placeholder="Nazwa sterownika" formControlName="label">
+    <app-input-error [formField]="controllerForm.get('label')" />
+
+    <label>Ip address</label>
+    <input type="text" placeholder="Adres ip sterownika" formControlName="ipAddress">
+    <app-input-error [formField]="controllerForm.get('ipAddress')" />
+
+
+    <label>Typ sterownika</label>
+    <select formControlName="type">
+      <option value="SIEMENS_S7">S7 Siemens</option>
+    </select>
+    <app-input-error [formField]="controllerForm.get('type')" />
+
+
+    <label>Port</label>
+    <input type="number" placeholder="Port sterownika domyślnie: 102" formControlName="port">
+    <app-input-error [formField]="controllerForm.get('port')" />
+
+
+    <ng-container *ngIf="controllerForm.contains('slot')">
+    <label>Slot</label>
+    <input type="number" placeholder="Slot sterownika domyślnie: 1" formControlName="slot">
+    <app-input-error [formField]="controllerForm.get('slot')" />
+    </ng-container>
+
+    <ng-container *ngIf="controllerForm.contains('rack')">
+      <label>Rack</label>
+      <input type="number" placeholder="Rack sterownika domyślnie: 0" formControlName="rack">
+      <app-input-error [formField]="controllerForm.get('rack')" />
+    </ng-container>
+
+    <button class="button-ok" (click)="createControllerOnClick()">{{update ? 'Zaaktualizuj' : 'Dodaj'}}</button>
+    <button class="button-ok" (click)="checkAvailabilityOnClick()">Sprawdź dostępność</button>
+  </form>
+</div>
+

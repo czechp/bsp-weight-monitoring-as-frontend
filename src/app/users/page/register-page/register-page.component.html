@@ -1,0 +1,5 @@
+<app-page title="Utwórz konto">
+  <ng-container *ngIf="registerForm$ | async as registerForm">
+    <app-register-form [registerForm]="registerForm" (registerOnClick)="register()"/>
+  </ng-container>
+</app-page>

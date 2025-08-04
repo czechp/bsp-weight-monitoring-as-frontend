@@ -1,0 +1,7 @@
+<div class="container">
+  <app-top-bar-tile *ngIf="visibility" [tile]="tile" [matMenuTriggerFor]="menu"/>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Twoje konto</button>
+    <button mat-menu-item (click)="logout()">Wyloguj</button>
+  </mat-menu>
+</div>

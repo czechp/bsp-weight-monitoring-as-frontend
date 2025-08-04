@@ -1,0 +1,18 @@
+<app-page title="Logowanie">
+  <ng-container *ngIf="loginForm$ | async as loginForm">
+    <app-login-form [loginForm]="loginForm" (register)="register()"/>
+    <div class="container-center">
+      <form method="dialog">
+        <p>Jeżeli nie masz konta możesz założyć je tutaj:
+          <a routerLink="/register">rejestracja</a>
+        </p>
+        <p>Jeżeli nie pamietasz hasła możesz odzyskać je tutaj:
+          <a routerLink="/restore-password">odzyskaj hasło</a>
+        </p>
+        <p>Ustaw nowe hasło z tokenem odzyskiwania:
+          <a routerLink="/set-new-password">ustaw nowe hasło</a>
+        </p>
+      </form>
+    </div>
+  </ng-container>
+</app-page>

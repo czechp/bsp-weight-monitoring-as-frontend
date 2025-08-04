@@ -1,0 +1,8 @@
+<app-page>
+  <ng-container *ngIf="controllers$ | async as controllers">
+    <div class="action-section">
+      <app-add-button *appRoleAccess="[UserRole.MAINTAINER, UserRole.ADMIN]" (click)="addController()"/>
+    </div>
+    <app-controllers-list [controllers]="controllers" />
+  </ng-container>
+</app-page>

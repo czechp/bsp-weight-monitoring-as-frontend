@@ -1,0 +1,14 @@
+<p *ngIf="controlField.invalid && (controlField.dirty || controlField.touched)">
+  <small *ngIf="controlField.hasError('required')">To pole jest wymagane.</small>
+  <small *ngIf="controlField.hasError('email')">Niepoprawny email.</small>
+  <small *ngIf="controlField.hasError('minlength')">
+    Minimalna długość to przynajmniej {{ controlField.getError('minlength').requiredLength }} znaków.
+  </small>
+  <small *ngIf="controlField.hasError('invalidIp')">Niepoprawny format adresu IP.</small>
+  <small *ngIf="controlField.hasError('min')">
+    Wartość musi być większa lub równa {{ controlField.getError('min').min }}.
+  </small>
+  <small *ngIf="controlField.hasError('max')">
+    Wartość musi być mniejsza lub równa {{ controlField.getError('max').max }}.
+  </small>
+</p>

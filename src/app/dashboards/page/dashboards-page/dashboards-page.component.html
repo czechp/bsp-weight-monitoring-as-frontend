@@ -1,0 +1,6 @@
+<app-page title="Dashboardy">
+  <div class="action-section" *appRoleAccess="[UserRole.MAINTAINER, UserRole.ADMIN]">
+    <app-add-button (click)="navigateToCreate()" />
+  </div>
+  <app-dashboards-list *ngIf="dashboards$ | async as dashboards" [dashboards]="dashboards" (dashboardClick)="navigateToDetails($event)"/>
+</app-page>

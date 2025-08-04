@@ -1,0 +1,13 @@
+<div class="container-center">
+  <form method="dialog" [formGroup]="filterForm" (ngSubmit)="applyFilterOnClick()">
+    <div class="">
+      <label>Od</label>
+      <input type="date" formControlName="from">
+    </div>
+    <div class="">
+      <label>Do</label>
+      <input type="date" formControlName="to">
+    </div>
+    <button class="button-ok">Wyszukaj</button>
+  </form>
+</div>

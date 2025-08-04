@@ -1,0 +1,8 @@
+<div class="container-center">
+  <form [formGroup]="confirmEmailForm" (ngSubmit)="onSubmit()">
+    <label>Activation token from your inbox</label>
+    <input type="text" placeholder="Paste your activation token here" formControlName="confirmationToken">
+    <app-input-error [formField]="confirmEmailForm.get('confirmationToken')"/>
+    <button class="button-ok">Confirm</button>
+  </form>
+</div>

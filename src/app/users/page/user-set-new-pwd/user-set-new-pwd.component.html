@@ -1,0 +1,4 @@
+<app-page title="Ustaw nowe hasło">
+  <app-user-set-new-pwd-form *ngIf="setNewPasswordForm$ | async as setNewPasswordForm"
+                             [setNewPasswordForm]="setNewPasswordForm" (setPassword)="setNewPassword()"/>
+</app-page>

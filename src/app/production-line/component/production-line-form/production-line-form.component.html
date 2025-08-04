@@ -1,0 +1,12 @@
+<div class="container-center">
+  <form [formGroup]="productionLineForm" (ngSubmit)="submit()">
+    <label>Nazwa</label>
+    <input type="text" formControlName="name">
+    <app-input-error [formField]="productionLineForm.get('name')"/>
+    <label>Adres IP sterownika</label>
+    <input type="text" formControlName="ipAddress">
+    <app-input-error [formField]="productionLineForm.get('ipAddress')"/>
+
+    <button class="button-ok">{{ edit ? 'Modyfikuj': 'Dodaj' }}</button>
+  </form>
+</div>

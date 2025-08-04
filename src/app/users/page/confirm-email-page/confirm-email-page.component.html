@@ -1,0 +1,5 @@
+<app-page title="Confirm your email">
+  <ng-container *ngIf="confirmEmailForm$ | async as confirmEmailForm">
+    <app-confirm-email-form [confirmEmailForm]="confirmEmailForm" (confirmOnClick)="confirmEmail()"/>
+  </ng-container>
+</app-page>

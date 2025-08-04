@@ -1,0 +1,14 @@
+<div class="container-center">
+  <form [formGroup]="setNewPasswordForm" (ngSubmit)="onSetNewPwd()">
+    <label>Token odzyskiwania</label>
+    <input type="text" formControlName="restoreToken">
+    <app-input-error [formField]="setNewPasswordForm.get('restoreToken')"/>
+    <label>Nowe hasło</label>
+    <input type="text" formControlName="password">
+    <app-input-error [formField]="setNewPasswordForm.get('password')"/>
+    <label>Potwierdz hasło</label>
+    <input type="text" formControlName="passwordConfirm">
+    <app-input-error [formField]="setNewPasswordForm.get('passwordConfirm')"/>
+    <button class="button-ok">Ustaw nowe hasło</button>
+  </form>
+</div>

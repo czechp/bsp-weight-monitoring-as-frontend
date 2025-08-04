@@ -1,0 +1,20 @@
+.container {
+  border: .1rem solid;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-height: 2rem;
+}
+
+.value-container {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.name-container {
+  display: flex;
+  justify-content: center;
+  font-size: smaller;
+}

@@ -1,0 +1,4 @@
+<app-page>
+  <app-production-line-view-selector />
+  <app-production-line-measurements-table *ngIf="productionLines$ | async as lines" [productionLines]="lines" />
+</app-page>

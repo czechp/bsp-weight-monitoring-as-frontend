@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="menu">
+    <ng-container *ngFor="let item of menuElements">
+      <div class="item-element"
+           *appRoleAccess="item.access"
+           (click)="navigateTo(item)">
+        <fa-icon [icon]="['fas', item.icon]"/>
+        {{ item.label }}
+      </div>
+    </ng-container>
+
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-center full-width">
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Etykieta</th>
+      <th>Wartość</th>
+      <th>Typ pamięci</th>
+      <th>Typ I/O</th>
+      <th>Nr. bloku</th>
+      <th>Offset bajtowy</th>
+      <th>Offset bitowy</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let processValue of processValues" (click)="rowOnClick(processValue.id)">
+      <td>{{processValue.id}}</td>
+      <td>{{processValue.label}}</td>
+      <td>{{processValue.processValue}}</td>
+      <td>{{processValue.memoryAddress.memoryType}}</td>
+      <td>{{processValue.memoryAddress.valueType}}</td>
+      <td>{{processValue.memoryAddress.number}}</td>
+      <td>{{processValue.memoryAddress.byteOffset}}</td>
+      <td>{{processValue.memoryAddress.bitOffset}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

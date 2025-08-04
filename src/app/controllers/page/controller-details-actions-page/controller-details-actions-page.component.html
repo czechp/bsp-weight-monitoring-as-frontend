@@ -1,0 +1,15 @@
+<app-page-with-info *ngIf="controllerInfo$ | async as info" [info]="info" title="Szczególy sterownika">
+  <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="left">
+    <mat-tab label="Edytuj">
+      <ng-container *ngIf="controllerUpdateForm$ | async as controllerUpdateForm">
+        <app-controller-form [controllerForm]="controllerUpdateForm" (formConfirm)="updateController()" [update]="true" (checkAvailability)="checkAvailability()" />
+      </ng-container>
+    </mat-tab>
+    <mat-tab label="Usuń">
+      <app-controller-remove (remove)="removeController()" />
+    </mat-tab>
+    <mat-tab label="Aktywacja">
+      <app-controller-activation *ngIf="controllerModel$ | async as controllerModel" [controllerModel]="controllerModel" (changeActivation)="changeActivation()" />
+    </mat-tab>
+  </mat-tab-group>
+</app-page-with-info>

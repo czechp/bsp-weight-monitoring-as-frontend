@@ -1,0 +1,49 @@
+@import "src/variables";
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: .2rem solid;
+  border-radius: 1rem;
+  flex-direction: column;
+  min-width: 15rem;
+  min-height: 10rem;
+}
+
+h1{
+  font-weight: bold;
+}
+.container:hover {
+  background-color: $top-bar-background;
+  cursor: pointer;
+}
+.icon-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+fa-icon {
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: .2rem;
+}
+
+.subtitle {
+  font-style: italic;
+}
+
+.tile-rows{
+  display: flex;
+  width: 100%;
+}
+
+.tile-row{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

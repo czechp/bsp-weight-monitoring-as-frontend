@@ -1,0 +1,3 @@
+<app-page title="Dodaj I/O">
+  <app-process-value-form *ngIf=" processValueCreateForm$ | async as processValueCreateForm" [processValueForm] = "processValueCreateForm" (confirmed)="createProcessValue()"/>
+</app-page>

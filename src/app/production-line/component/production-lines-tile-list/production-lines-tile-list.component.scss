@@ -1,0 +1,35 @@
+@import "src/variables";
+
+.tile-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.tile {
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+  border: $border-width solid $layout-border-color;
+}
+
+.tile:hover {
+  box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.12);
+  border-color: $color-disabled;
+  cursor: pointer;
+  background: $body-background-hover;
+}
+
+.tile h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.tile p {
+  margin: 0.2rem 0;
+  color: $font-color;
+  font-size: 0.95rem;
+}

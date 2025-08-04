@@ -1,0 +1,3 @@
+<app-page *ngIf="users$ | async as users">
+  <app-users-list [users]="users" (userTileClicked)="navigateToDetails($event)"/>
+</app-page>

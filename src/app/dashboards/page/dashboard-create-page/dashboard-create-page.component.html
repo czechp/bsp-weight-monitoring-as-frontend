@@ -1,0 +1,5 @@
+<app-page title="Dodaj dashboard">
+  <ng-container *ngIf="icons$ | async as icons">
+    <app-dashboard-form *ngIf="createDashboardForm$ | async as createDashboardForm" [dashboardFormGroup]="createDashboardForm" [icons]="icons" (submitted)="createDashboard()" />
+  </ng-container>
+</app-page>

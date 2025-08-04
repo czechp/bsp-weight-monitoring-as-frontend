@@ -1,0 +1,6 @@
+<app-page title="Dodaj sterownik">
+  <ng-container *ngIf="createForm$ | async as createForm">
+    <app-controller-form [controllerForm]="createForm" (formConfirm)="createController()" (checkAvailability)="checkAvailability()" />
+
+  </ng-container>
+</app-page>

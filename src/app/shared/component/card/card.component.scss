@@ -1,0 +1,50 @@
+@import "src/variables";
+
+.container {
+  width: 40rem;
+}
+
+.title {
+  height: 3rem;
+  border: $border-width solid $layout-border-color;
+  border-radius: 1rem 1rem 0 0;
+  padding: 1rem;
+  text-align: center;
+  background-color: $top-bar-background;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.content {
+  border: $border-width solid $layout-border-color;
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+}
+
+.content-element {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.key {
+  font-size: larger;
+}
+
+.value {
+  font-style: italic;
+  margin-bottom: .5rem;
+}
+
+hr {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.state-ok{
+  color: $color-success
+}
+
+.state-nok{
+  color: $color-nok
+}

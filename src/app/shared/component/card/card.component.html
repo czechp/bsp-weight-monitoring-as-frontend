@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="title">
+    {{ title }}
+  </div>
+  <div class="content">
+    <div class="content-element" *ngFor="let row of rows; let last=last">
+      <span class="key">{{ row.key }}</span>
+      <span class="value" [ngClass]="getStateClass(row.state)">{{ row.value }}</span>
+      <hr *ngIf="!last">
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<table>
+  <thead>
+  <tr>
+    <th>Linia</th>
+    <th>Zmiana</th>
+    <th>Produkt</th>
+    <th>Data rozpoczęcia</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let report of reports" (click)="navigateToDetails(report.id)">
+      <td>{{report.lineName}}</td>
+      <td>{{report.reportShift}}</td>
+      <td>{{report.product.productName}}</td>
+      <td>{{report.startAt | localDateTime}}</td>
+      <td [ngClass]="{'report-open':report.reportOpen}">{{report.reportOpen ? 'Otwarty' : 'Zakończony'}}</td>
+
+    </tr>
+  </tbody>
+</table>

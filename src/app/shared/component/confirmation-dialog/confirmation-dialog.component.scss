@@ -1,0 +1,29 @@
+@import "src/variables";
+
+.container {
+  background-color: #1c1c1d;;
+  height: 100%;
+  border: .15rem solid $layout-border-color;
+  border-radius: .25rem;
+}
+
+.title-section {
+  background-color: #252728;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.content-section {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: larger;
+}
+
+.action-section {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  width: 40%;
+}

@@ -1,0 +1,50 @@
+<div class="container" [ngClass]="{'line-working': productionLine.lineActive}">
+  <p class="line-name">{{productionLine.name}}</p>
+  <div class="last-update">
+    <div class="">
+      <app-communication-error *ngIf="productionLine.communicationError" />
+    </div>
+    <span>Ostatnia aktualizacja <br>{{productionLine.lastUpdate ? (productionLine.lastUpdate | localDateTime) : 'Brak danych' }}</span>
+  </div>
+  <hr>
+  <p class="section-main-title">Produkt</p>
+  <p class="title">{{productionLine.product.productName}}</p>
+  <hr>
+
+  <p class="section-title">Waga</p>
+  <div class="info-container">
+    <p>Min. <br> {{productionLine.product.productMinimumWeight}} g</p>
+    <p class="larger">OK <br> {{productionLine.product.productCorrectWeight}} g</p>
+    <p>Max. <br>{{productionLine.product.productMaximumWeight}} g</p>
+  </div>
+  <hr>
+  <p class="section-title">Wymiary kubka </p>
+  <div class="info-container">
+    <p>Wysokość <br>{{productionLine.product.cupHeight}} mm</p>
+    <p>Średnica <br>{{productionLine.product.cupDiameter}} mm</p>
+    <p>Waga <br>{{productionLine.product.cupWeight}} g</p>
+  </div>
+  <hr>
+  <p class="section-main-title">Pomiary</p>
+  <p class="section-title">Średnia</p>
+  <p>{{productionLine.averageMeasurement.toFixed(2)}} g</p>
+  <p class="section-title">Aktualne pomiary z lejków</p>
+  <p style="font-size: smaller">Nr.lejka / Waga / Odchyłka</p>
+  <div class="measurement-container">
+    <app-measurement-tile class="measurement-tile"
+                          *ngFor="let measurement of productionLine.measurements"
+                          [measurement]="measurement"
+                          [product]="productionLine.product"
+    />
+  </div>
+  <hr>
+  <p class="section-main-title">Parafina</p>
+  <div class="info-container">
+    <p>Zużycie parafiny<br><br> <br>{{(productionLine.paraffinConsumption.paraffinRealConsumption / 1000).toFixed(2)}} kg</p>
+    <p>Zużycie parafiny (oczekiwane)<br><br>{{(productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000).toFixed(2)}} kg</p>
+    <p>Zużycie parafiny (odchyłka)<br><br>{{(productionLine.paraffinConsumption.paraffinDeviation / 1000).toFixed(2)}} kg</p>
+  </div>
+  <hr>
+  <p class="section-main-title">Licznik produktu</p>
+  <p>{{productionLine.productCounter}} szt.</p>
+</div>

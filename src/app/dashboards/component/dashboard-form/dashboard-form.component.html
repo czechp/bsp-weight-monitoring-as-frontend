@@ -1,0 +1,14 @@
+<div class="container-center">
+  <form [formGroup]="dashboardFormGroup" (ngSubmit)="submitOnClick()">
+    <label>Nazwa:</label>
+    <input type="text" formControlName="title">
+    <app-input-error [formField]="dashboardFormGroup.get('title')"/>
+
+    <label>Ikona</label>
+    <div class="icon-container">
+      <fa-icon *ngIf="selectedIcon" [icon]="['fas', selectedIcon]" size="10x" />
+    </div>
+    <app-icon-selector [icons]="icons" (iconChange)="assignIcon($event)"/>
+    <button class="button-ok">Dodaj</button>
+  </form>
+</div>

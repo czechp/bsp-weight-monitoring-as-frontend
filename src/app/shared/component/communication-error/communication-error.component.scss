@@ -1,0 +1,20 @@
+@import "src/variables";
+
+.container {
+  color: $color-nok;
+  display: flex;
+  margin: 0;
+}
+
+p {
+  line-height: .8rem;
+  font-size: smaller;
+  margin-bottom: 0;
+}
+
+fa-icon{
+  margin-left: .3rem;
+  margin-right: .3rem;
+}
+
+

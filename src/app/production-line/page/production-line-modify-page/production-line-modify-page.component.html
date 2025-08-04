@@ -1,0 +1,13 @@
+<app-page title="Modyfikuj/Usuń linie produkcyjną">
+  <app-production-lines-tile-list *ngIf="productionLines$ | async as productionLines"
+                                  [productionLines]="productionLines" (selectedProductionLine)="selectProductionLine($event)"/>
+
+  <ng-container *ngIf="selectedProductionLineForm$ | async as selectedProductionLineForm">
+    <app-production-line-modify
+      *ngIf="selectedProductionLine$ | async as selectedProductionLine"
+      [productionLine]="selectedProductionLine"
+      [productionLineForm]="selectedProductionLineForm"
+      (modify)="modifyProductionLine()"
+      (delete)="deleteProductionLine()"/>
+  </ng-container>
+</app-page>

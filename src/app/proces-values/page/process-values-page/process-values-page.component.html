@@ -1,0 +1,6 @@
+<app-page title="I/O">
+  <div class="add-button">
+    <app-add-button (click)="goToCreateProcessValue()"/>
+  </div>
+  <app-process-values-list *ngIf="processValues$ | async as processValues" [processValues]="processValues" (rowClicked)="goToDetails($event)" />
+</app-page>

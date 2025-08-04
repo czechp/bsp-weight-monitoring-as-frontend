@@ -1,0 +1,26 @@
+@import "src/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: .2rem solid;
+  border-radius: 1rem;
+  flex-direction: column;
+  min-height: 10rem;
+  min-width: 15rem;
+}
+
+.container:hover {
+  color: $body-background;
+  background-color: $font-color;
+  cursor: pointer;
+}
+
+fa-icon {
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: .2rem;
+}

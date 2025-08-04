@@ -1,0 +1,4 @@
+<app-page>
+  <app-production-line-view-selector />
+  <app-production-line-list *ngIf="productionLines$ | async as productionLines" [productionLines]="productionLines" />
+</app-page>

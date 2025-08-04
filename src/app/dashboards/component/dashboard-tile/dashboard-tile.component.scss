@@ -1,0 +1,35 @@
+@import "src/variables";
+
+h1, h2 {
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  border: .15rem solid;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+
+.icon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .2rem;
+}
+
+.item {
+  width: 29%;
+}
+
+hr{
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}

@@ -1,0 +1,28 @@
+<div class="container-center" [formGroup]="processValueForm">
+  <form [formGroup]="processValueForm" (ngSubmit)="submitOnClick()">
+    <label>Etykieta</label>
+    <input type="text" placeholder="Wpisz nazwę, która bedzię używanan w systemie" formControlName="label">
+    <app-input-error [formField]="processValueForm.get('label')"/>
+    <ng-container formGroupName="memoryAddress">
+      <ng-container *ngIf="processValueForm.get('memoryAddress.valueType')">
+        <label>Typ zmiennej</label>
+        <select formControlName="valueType">
+          <option *ngFor="let row of processValueTypesValues" [value]="row.value">{{ row.label }}</option>
+        </select>
+      </ng-container>
+      <label>Rodzaj pamięci</label>
+      <select formControlName="memoryType">
+        <option *ngFor="let row of memoryAddressValues" [value]="row.value">{{ row.label }}</option>
+      </select>
+      <label>Numer bloku danych</label>
+      <input type="text" formControlName="number">
+      <label>Numer bajtu</label>
+      <input type="text" formControlName="byteOffset">
+      <ng-container *ngIf="processValueForm.get('memoryAddress.bitOffset')">
+        <label>Number bitu</label>
+        <input type="text" formControlName="bitOffset">
+      </ng-container>
+    </ng-container>
+    <button class="button-ok">Dodaj</button>
+  </form>
+</div>

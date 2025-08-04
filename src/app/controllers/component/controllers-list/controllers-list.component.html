@@ -1,0 +1,3 @@
+<div class="tile-container">
+  <app-controller-tile *ngFor="let controller of controllers" [controller]="controller" (click)="navigateToDetails(controller.id)" />
+</div>

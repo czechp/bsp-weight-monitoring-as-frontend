@@ -1,0 +1,244 @@
+@import "variables";
+
+
+@font-face {
+  font-family: 'Roboto Variable';
+  src: url('/assets/fonts/roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Variable Italic';
+  src: url('/assets/fonts/roboto/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Faster One';
+  src: url('/assets/fonts/faster_one/FasterOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/assets/fonts/orbitron/Orbitron-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $body-background;
+  color: $font-color;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
+}
+
+input {
+  background-color: transparent;
+  color: $font-color;
+  padding: 1rem;
+  border: none;
+  border-bottom: $border-width solid $font-color;
+}
+
+button {
+  margin-top: 2rem;
+  background-color: transparent;
+  padding: .5rem;
+  color: $font-color;
+  border: $border-width solid $font-color;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  cursor: pointer;
+  color: $font-color;
+}
+
+.button-ok {
+  border-color: $color-ok;
+  color: $color-ok;
+}
+
+.button-ok:hover {
+  background-color: $color-ok;
+}
+
+.button-nok {
+  border-color: $color-nok;
+  color: $color-nok;
+}
+
+.button-nok:hover {
+  background-color: $color-nok;
+}
+
+.button-success {
+  border-color: $color-success;
+  color: $color-success;
+}
+
+.button-success:hover {
+  background-color: $color-success;
+
+}
+
+
+.container-center {
+  display: flex;
+  justify-content: center;
+}
+
+label {
+  margin-top: 2rem;
+}
+
+.font-success {
+  color: $color-success;
+}
+
+.font-nok {
+  color: $color-nok;
+}
+
+.border-success {
+  border-color: $color-success !important;
+}
+
+.border-nok {
+  border-color: $color-nok !important;
+}
+
+.border-disabled {
+  border-color: $color-disabled !important;
+}
+
+.email {
+  font-style: italic;
+}
+
+.tile-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+  --mat-tab-header-inactive-label-text-color: $font-color;
+  --mat-tab-header-active-label-text-color: $font-color;
+  --mat-tab-header-inactive-hover-label-text-color: $font-color;
+  --mat-tab-header-active-hover-label-text-color: $font-color;
+}
+
+
+:root {
+  --mat-menu-container-color: #252728;
+  --mat-menu-item-label-text-color: $font-color;
+  --mat-menu-item-hover-state-layer-color: #1c1c1d;;
+}
+
+select {
+  background-color: transparent;
+  color: $font-color;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: $border-width solid $font-color;
+}
+
+a {
+  color: $color-ok;
+  font-style: italic;
+}
+
+a:hover {
+  color: $font-color;
+}
+
+.container-center-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: none;
+}
+
+th, td {
+  border-bottom: .1rem solid;
+  border-right: .1rem solid;
+  padding: .75rem;
+  text-align: center;
+}
+
+th:first-child, td:first-child {
+  border-left: none;
+}
+
+thead th {
+  border-top: none;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr td:last-child {
+  border-right: none;
+}
+
+tbody tr:hover {
+  cursor: pointer;
+  background-color: $body-background-hover;
+}
+
+thead th:last-child {
+  border-right: none;
+}
+
+.remove-info{
+  margin-top: 2rem!important;
+  font-style: italic;
+}
+
+.action-section{
+  display: flex;
+  justify-content: flex-end;
+}

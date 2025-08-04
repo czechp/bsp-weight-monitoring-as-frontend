@@ -1,0 +1,42 @@
+<div class="container">
+  <table>
+    <thead>
+    <tr>
+      <th>Linia</th>
+      <th>Praca</th>
+      <th>Produkt</th>
+      <th>Waga Min. [g]</th>
+      <th>Waga OK [g]</th>
+      <th>Waga Max. [g]</th>
+      <th>Lej 1 [g]</th>
+      <th>Lej 2 [g]</th>
+      <th>Lej 3 [g]</th>
+      <th>Lej 4 [g]</th>
+      <th>Lej 5 [g]</th>
+      <th>Lej 6 [g]</th>
+      <th>Lej 7 [g]</th>
+      <th>Lej 8 [g]</th>
+      <th>Lej 9 [g]</th>
+      <th>Lej 10 [g]</th>
+      <th>Lej 11 [g]</th>
+      <th>Lej 12 [g]</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let line of productionLines">
+      <td>{{ line.name }}</td>
+      <td><fa-icon icon="power-off" [ngClass]="{'line-working':line.lineActive}"/></td>
+      <td>{{line.product.productName}}</td>
+      <td>{{line.product.productMinimumWeight | twoDigits}}</td>
+      <td>{{line.product.productCorrectWeight | twoDigits}}</td>
+      <td>{{line.product.productMaximumWeight | twoDigits}}</td>
+      <td class="ok" *ngFor="let measurement of line.measurements" [ngClass]="{'nok': measurement.value < line.product.productMinimumWeight || measurement.value > line.product.productMaximumWeight}">
+        {{measurement.value | twoDigits}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>

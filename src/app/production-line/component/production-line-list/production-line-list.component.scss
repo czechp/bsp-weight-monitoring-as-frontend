@@ -1,0 +1,41 @@
+@import "src/variables";
+
+.tile-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 2rem;
+  padding: 1.5rem;
+  justify-content: center;
+}
+
+.tile {
+  width: 24rem;
+  min-width: 22rem;
+  max-width: 22rem;
+}
+
+@media (max-width: 900px) {
+  .tile-container {
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  .tile {
+    width: 16rem;
+    min-width: 16rem;
+    max-width: 16rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tile-container {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.25rem;
+  }
+  .tile {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}

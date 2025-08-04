@@ -1,0 +1,9 @@
+<div class="container-center">
+  <form [formGroup]="changeRoleForm" (ngSubmit)="onChangeRole()">
+    <label>Uprawnienia:</label>
+    <select formControlName="role">
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+    <button class="button-ok">Zmień uprawnienia</button>
+  </form>
+</div>

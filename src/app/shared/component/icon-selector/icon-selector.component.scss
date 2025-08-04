@@ -1,0 +1,20 @@
+@import "src/variables";
+
+
+.icon-container{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+fa-icon {
+  margin: 0.5rem;
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 0.5rem;
+}
+
+
+fa-icon:hover {
+  background-color: $top-bar-background;
+}

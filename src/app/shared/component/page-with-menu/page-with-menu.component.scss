@@ -1,0 +1,31 @@
+@import "src/variables";
+
+
+.container {
+  width: 100%;
+  display: flex;
+}
+
+.menu {
+  flex: 1;
+  border-right: $border-width solid $layout-border-color;
+  height: calc(100vh - $top-bar-height);
+  background-color: $top-bar-background;
+
+}
+
+.content {
+  flex: 5;
+}
+
+.item-element {
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: bold;
+}
+
+.item-element:hover {
+  cursor: pointer;
+  background-color: $body-background;
+}

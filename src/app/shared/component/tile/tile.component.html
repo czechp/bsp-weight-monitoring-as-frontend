@@ -1,0 +1,16 @@
+<div class="container" [appElementState]="state">
+  <div class="icon-wrapper">
+    <fa-icon [icon]="['fas',iconName]" size="2x"/>
+  </div>
+  <h1>{{ title }}</h1>
+  <p class="subtitle">{{ subtitle }}</p>
+  <p class="subtitle">{{ secondSubtitle }}</p>
+  <div class="tile-rows">
+    <div class="tile-row" *ngFor="let row of infoRows">
+      <span>{{row.key}}</span>
+      <span>{{row.value}}</span>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,31 @@
+@import "src/variables";
+
+.container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3rem;
+}
+
+.statement {
+  border: .15rem solid;
+  min-width: 30%;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 1rem;
+  margin-right: 2rem;
+  background-color: $body-background;
+}
+
+
+.error {
+  border-color: $color-nok;
+  color: $color-nok;
+}
+
+.success {
+  border-color: $color-success;
+  color: $color-success;
+}

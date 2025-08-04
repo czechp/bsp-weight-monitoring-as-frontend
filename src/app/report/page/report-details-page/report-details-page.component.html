@@ -1,0 +1,4 @@
+<app-page>
+  <app-report-details *ngIf="report$ | async as report" [report]="report"/>
+  <app-remove-element *appRoleAccess="[UserRole.ADMIN, UserRole.MAINTAINER]" (confirmDelete)="removeReport()"/>
+</app-page>
