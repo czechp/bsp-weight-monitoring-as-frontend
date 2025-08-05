@@ -31,6 +31,7 @@ import { LocalDateTimePipe } from './pipe/local-date-time.pipe';
 import { CommunicationErrorComponent } from './component/communication-error/communication-error.component';
 import { TwoDigitsPipe } from './pipe/two-digits.pipe';
 import { LocalTimePipe } from './pipe/local-time.pipe';
+import { ProgressBarComponent } from './component/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { LocalTimePipe } from './pipe/local-time.pipe';
     CommunicationErrorComponent,
     TwoDigitsPipe,
     LocalTimePipe,
+    ProgressBarComponent,
   ],
   imports: [
     CommonModule,

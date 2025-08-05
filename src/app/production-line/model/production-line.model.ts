@@ -20,6 +20,13 @@ export type ParaffinConsumptionModel = {
   paraffinDeviation: number;
 };
 
+export type EfficiencyModel = {
+  productCounter: number;
+  expectedProduction: number;
+  productsPerShift: number;
+  expectedProductionPercent: number;
+}
+
 export type ProductionLineModel = {
   id: number;
   version: number;
@@ -29,11 +36,12 @@ export type ProductionLineModel = {
   measurements: MeasurementModel[];
   averageMeasurement: number;
   lineActive: boolean;
-  productCounter: number;
   paraffinConsumption: ParaffinConsumptionModel;
   communicationError: boolean;
   lastUpdate: string;
+  efficiency: EfficiencyModel;
 };
+
 
 
 export type ProductionLineAddModel = {

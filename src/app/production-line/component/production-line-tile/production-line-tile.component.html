@@ -7,6 +7,21 @@
     <span>Ostatnia aktualizacja <br>{{productionLine.lastUpdate ? (productionLine.lastUpdate | localDateTime) : 'Brak danych' }}</span>
   </div>
   <hr>
+
+  <p class="section-main-title">Produkcja</p>
+  <div class="info-container-center">
+    <p>Produkcja na zmianę <br> {{productionLine.efficiency.productsPerShift}} szt.
+      <br>
+
+    </p>
+  </div>
+  <div class="info-container">
+    <p>Oczekiwana. <br> {{productionLine.efficiency.expectedProduction}} szt.</p>
+    <p>Aktualna. <br>{{productionLine.efficiency.productCounter}} szt.</p>
+  </div>
+
+  <hr>
+
   <p class="section-main-title">Produkt</p>
   <p class="title">{{productionLine.product.productName}}</p>
   <hr>
@@ -44,7 +59,4 @@
     <p>Zużycie parafiny (oczekiwane)<br><br>{{(productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000).toFixed(2)}} kg</p>
     <p>Zużycie parafiny (odchyłka)<br><br>{{(productionLine.paraffinConsumption.paraffinDeviation / 1000).toFixed(2)}} kg</p>
   </div>
-  <hr>
-  <p class="section-main-title">Licznik produktu</p>
-  <p>{{productionLine.productCounter}} szt.</p>
 </div>

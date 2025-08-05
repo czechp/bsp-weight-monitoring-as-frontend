@@ -14,6 +14,7 @@ import { ProductionLineModifyComponent } from './component/production-line-modif
 import { ProductionLineMeasurementsListComponent } from './page/production-line-measurements-list-page/production-line-measurements-list.component';
 import { ProductionLineViewSelectorComponent } from './component/production-line-view-selector/production-line-view-selector.component';
 import { ProductionLineMeasurementsTableComponent } from './component/production-line-measurements-table/production-line-measurements-table.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 
@@ -33,9 +34,10 @@ import { ProductionLineMeasurementsTableComponent } from './component/production
     ProductionLineViewSelectorComponent,
     ProductionLineMeasurementsTableComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        MatProgressBarModule,
+    ]
 })
 export class ProductionLineModule { }
