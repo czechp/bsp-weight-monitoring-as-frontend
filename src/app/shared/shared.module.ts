@@ -96,7 +96,8 @@ import { ProgressBarComponent } from './component/progress-bar/progress-bar.comp
     LocalDateTimePipe,
     CommunicationErrorComponent,
     TwoDigitsPipe,
-    LocalTimePipe
+    LocalTimePipe,
+    ProgressBarComponent
   ]
 })
 export class SharedModule {
