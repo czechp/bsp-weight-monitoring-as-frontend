@@ -59,7 +59,7 @@ import {ReportListPageComponent} from "./report/page/report-list-page/report-lis
 import {ReportDetailsPageComponent} from "./report/page/report-details-page/report-details-page.component";
 
 const routes: Routes = [
-    {path: "", redirectTo: "production-lines", pathMatch: "full"},
+    {path: "", component: ProductionLineListPageComponent, canActivate: [loginGuard]},
     {path: 'forbidden', component: ForbiddenPageComponent},
     {path: 'login', component: LoginPageComponent},
     {path: 'restore-password', component: UserRestorePasswordPageComponent},
