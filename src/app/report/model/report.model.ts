@@ -1,4 +1,4 @@
-import {ProductModel} from "../../production-line/model/production-line.model";
+import {EfficiencyModel, MeasurementModel, ProductModel} from "../../production-line/model/production-line.model";
 
 export type ReportModel = {
   id: number;
@@ -23,4 +23,6 @@ export type ReportItemModel = {
   createdAt: string;
   weightCorrect: boolean;
   weightDeviation: number;
+  efficiency: EfficiencyModel;
+  measurements: MeasurementModel[];
 }

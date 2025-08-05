@@ -42,14 +42,30 @@ hr {
   width: 20%;
 }
 
-.measurement-row-content > .container-item{
+.measurement-row-content > .container-item {
   margin-bottom: 0;
 }
 
-.measurement-ok{
+.measurement-ok {
   color: $color-success
 }
 
-.measurement-nok{
+.measurement-nok {
   color: $color-nok
+}
+
+.production-efficiency {
+  display: flex;
+  justify-content: space-around;
+}
+
+.production-efficiency-item {
+  width: 40%;
+}
+
+.measurement-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
 }

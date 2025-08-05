@@ -34,10 +34,13 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ProductionLineViewSelectorComponent,
     ProductionLineMeasurementsTableComponent
   ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        MatProgressBarModule,
-    ]
+  exports: [
+    MeasurementTileComponent
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatProgressBarModule,
+  ]
 })
 export class ProductionLineModule { }

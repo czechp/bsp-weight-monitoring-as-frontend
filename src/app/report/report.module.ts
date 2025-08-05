@@ -6,6 +6,7 @@ import {SharedModule} from "../shared/shared.module";
 import { ReportFilterFormComponent } from './component/report-filter-form/report-filter-form.component';
 import { ReportDetailsPageComponent } from './page/report-details-page/report-details-page.component';
 import { ReportDetailsComponent } from './component/report-details/report-details.component';
+import {ProductionLineModule} from "../production-line/production-line.module";
 
 
 @NgModule({
@@ -16,9 +17,9 @@ import { ReportDetailsComponent } from './component/report-details/report-detail
     ReportDetailsPageComponent,
     ReportDetailsComponent
   ],
-  imports: [
-    CommonModule, SharedModule
-  ]
+    imports: [
+        CommonModule, SharedModule, ProductionLineModule
+    ]
 })
 export class ReportModule {
 }

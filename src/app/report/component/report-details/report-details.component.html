@@ -57,8 +57,8 @@
   </div>
 </div>
 <hr>
-<h1>Pomiary</h1>
 <div class="" *ngFor="let reportItem of report.reportItems">
+  <h2>Pomiary wagi</h2>
   <div class="measurement-row">
     <div class="measurement-row-content">
       <div class="container-item">
@@ -80,6 +80,17 @@
       <fa-icon *ngIf="reportItem.weightCorrect" icon="check" size="3x" class="measurement-ok"/>
       <fa-icon *ngIf="!reportItem.weightCorrect" icon="xmark" size="3x" class="measurement-nok"/>
     </div>
+  </div>
+  <div class="measurement-container">
+    <app-measurement-tile style="width: 20rem" *ngFor="let measurement of reportItem.measurements"
+                         [measurement]="measurement"
+                         [product]="report.product"></app-measurement-tile>
+  </div>
+  <h2>Produkcja</h2>
+  <div class="production-efficiency">
+    <p class="production-efficiency-item">Oczekiwana <br> {{reportItem.efficiency.expectedProduction}} <br> <app-progress-bar [value]="reportItem.efficiency.expectedProductionPercent" /></p>
+    <p class="production-efficiency-item">Rzeczywista <br> {{reportItem.efficiency.productCounter}} <br> <app-progress-bar [value]="reportItem.efficiency.productionProgressPercent" /></p>
+
   </div>
   <hr>
 </div>
