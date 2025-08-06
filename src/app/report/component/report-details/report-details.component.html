@@ -34,11 +34,11 @@
     </div>
     <div class="container-item">
       <p class="key">Średnica kubka</p>
-      <p class="value">{{ report.product.cupDiameter | twoDigits }} mm</p>
+      <p class="value">{{ report.product.cupDiameter.toFixed(1) }} mm</p>
     </div>
     <div class="container-item">
       <p class="key">Waga kubka</p>
-      <p class="value">{{ report.product.cupWeight | twoDigits }} mm</p>
+      <p class="value">{{ report.product.cupWeight.toFixed(1) }} g</p>
     </div>
   </div>
   <div class="container-column">

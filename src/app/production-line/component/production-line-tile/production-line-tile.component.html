@@ -26,7 +26,7 @@
 
   <p class="section-main-title">Pomiary</p>
   <p class="section-title">Średnia</p>
-  <p>{{ productionLine.averageMeasurement.toFixed(2) }} g</p>
+  <p>{{ productionLine.averageMeasurement | twoDigits}} g</p>
   <p class="section-title">Aktualne pomiary z lejków</p>
   <p style="font-size: smaller">Nr.lejka / Waga / Odchyłka</p>
   <div class="measurement-container">
@@ -58,12 +58,12 @@
   <hr>
   <p class="section-main-title">Parafina</p>
   <div class="info-container">
-    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption / 1000).toFixed(2) }}
+    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption / 1000).toFixed(0) }}
       kg</p>
     <p>Zużycie parafiny
-      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000).toFixed(2) }} kg
+      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000).toFixed(0) }} kg
     </p>
-    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation / 1000).toFixed(2) }}
+    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation / 1000).toFixed(0) }}
       kg</p>
   </div>
 </div>

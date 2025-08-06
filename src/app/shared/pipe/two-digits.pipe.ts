@@ -7,7 +7,7 @@ export class TwoDigitsPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     if (typeof value === 'number') {
-      return value.toFixed(2);
+      return value.toFixed(0);
     }
     return value;
   }
