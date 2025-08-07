@@ -36,7 +36,7 @@
       <td class="ok" *ngFor="let measurement of line.measurements" [ngClass]="{'nok': measurement.value < line.product.productMinimumWeight || measurement.value > line.product.productMaximumWeight}">
         {{measurement.value | twoDigits}}
       </td>
-      <td>{{line.paraffinConsumption.paraffinDeviationPercent.toFixed(1)}}</td>
+      <td class="ok" [ngClass]="{'nok':line.paraffinConsumption.paraffinDeviationPercent < 0}">{{line.paraffinConsumption.paraffinDeviationPercent.toFixed(1)}}</td>
     </tr>
     </tbody>
   </table>
