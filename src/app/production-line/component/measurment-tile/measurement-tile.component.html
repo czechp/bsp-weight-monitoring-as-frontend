@@ -1,5 +1,5 @@
 <div class="container" [ngClass]="{'weight-invalid':invalidWeight}">
   <span class="smaller">{{measurement.dosingNr}}</span>
-  <span>{{measurement.value | twoDigits}} g</span>
-  <span class="smaller">{{measurement.deviation | twoDigits}} g</span>
+  <span>{{measurement.value | ZeroDigits}} g</span>
+  <span class="smaller">{{measurement.deviation | ZeroDigits}} g</span>
 </div>

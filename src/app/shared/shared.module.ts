@@ -29,9 +29,10 @@ import { RemoveElementComponent } from './component/remove-element/remove-elemen
 import { UnitPipe } from './pipe/unit.pipe';
 import { LocalDateTimePipe } from './pipe/local-date-time.pipe';
 import { CommunicationErrorComponent } from './component/communication-error/communication-error.component';
-import { TwoDigitsPipe } from './pipe/two-digits.pipe';
+import { ZeroDigitsPipe } from './pipe/zero-digits.pipe';
 import { LocalTimePipe } from './pipe/local-time.pipe';
 import { ProgressBarComponent } from './component/progress-bar/progress-bar.component';
+import { OneDigitsPipe } from './pipe/one-digits.pipe';
 
 @NgModule({
   declarations: [
@@ -54,9 +55,10 @@ import { ProgressBarComponent } from './component/progress-bar/progress-bar.comp
     UnitPipe,
     LocalDateTimePipe,
     CommunicationErrorComponent,
-    TwoDigitsPipe,
+    ZeroDigitsPipe,
     LocalTimePipe,
     ProgressBarComponent,
+    OneDigitsPipe,
   ],
   imports: [
     CommonModule,
@@ -95,9 +97,10 @@ import { ProgressBarComponent } from './component/progress-bar/progress-bar.comp
     RemoveElementComponent,
     LocalDateTimePipe,
     CommunicationErrorComponent,
-    TwoDigitsPipe,
+    ZeroDigitsPipe,
     LocalTimePipe,
-    ProgressBarComponent
+    ProgressBarComponent,
+    OneDigitsPipe
   ]
 })
 export class SharedModule {

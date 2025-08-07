@@ -14,7 +14,7 @@
       <br>
     </p>
   </div>
-  <div style="width: 100%" >
+  <div style="width: 100%">
     <div class="efficiency-item">Oczekiwana. <br> {{ productionLine.efficiency.expectedProduction }} szt. <br>
       <app-progress-bar [value]="productionLine.efficiency.expectedProductionPercent "/>
     </div>
@@ -26,7 +26,7 @@
 
   <p class="section-main-title">Pomiary</p>
   <p class="section-title">Średnia</p>
-  <p>{{ productionLine.averageMeasurement | twoDigits}} g</p>
+  <p>{{ productionLine.averageMeasurement}} g</p>
   <p class="section-title">Aktualne pomiary z lejków</p>
   <p style="font-size: smaller">Nr.lejka / Waga / Odchyłka</p>
   <div class="measurement-container">
@@ -52,19 +52,19 @@
   <p class="section-title">Wymiary kubka </p>
   <div class="info-container">
     <p>Wysokość <br>{{ productionLine.product.cupHeight }} mm</p>
-    <p>Średnica <br>{{ productionLine.product.cupDiameter.toFixed(1) }} mm</p>
-    <p>Waga <br>{{ productionLine.product.cupWeight.toFixed(1) }} g</p>
+    <p>Średnica <br>{{ productionLine.product.cupDiameter}} mm</p>
+    <p>Waga <br>{{ productionLine.product.cupWeight}} g</p>
   </div>
   <hr>
   <p class="section-main-title">Parafina</p>
   <div class="info-container">
-    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption / 1000) | twoDigits }}
+    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption) }}
       kg</p>
     <p>Zużycie parafiny
-      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000) | twoDigits }} kg
+      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption) }} kg
     </p>
-    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation / 1000) | twoDigits }} kg
-      <br> {{productionLine.paraffinConsumption.paraffinDeviationPercent.toFixed(1)}} %
+    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation ) }} kg
+      <br> {{ productionLine.paraffinConsumption.paraffinDeviationPercent }} %
     </p>
   </div>
 </div>

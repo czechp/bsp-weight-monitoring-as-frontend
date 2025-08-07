@@ -16,21 +16,21 @@
   <div class="container-column">
     <div class="container-item">
       <p class="key">Waga OK</p>
-      <p class="value">{{ report.product.productCorrectWeight | twoDigits }} g</p>
+      <p class="value">{{ report.product.productCorrectWeight | ZeroDigits }} g</p>
     </div>
     <div class="container-item">
       <p class="key">Waga min.</p>
-      <p class="value">{{ report.product.productMinimumWeight | twoDigits }} g</p>
+      <p class="value">{{ report.product.productMinimumWeight | ZeroDigits }} g</p>
     </div>
     <div class="container-item">
       <p class="key">Waga max.</p>
-      <p class="value">{{ report.product.productMaximumWeight | twoDigits }} g</p>
+      <p class="value">{{ report.product.productMaximumWeight | ZeroDigits }} g</p>
     </div>
   </div>
   <div class="container-column">
     <div class="container-item">
       <p class="key">Wyskość kubka</p>
-      <p class="value">{{ report.product.cupHeight | twoDigits }} mm</p>
+      <p class="value">{{ report.product.cupHeight | ZeroDigits }} mm</p>
     </div>
     <div class="container-item">
       <p class="key">Średnica kubka</p>
@@ -67,12 +67,12 @@
       </div>
       <div class="container-item">
         <p class="key">Średni pomiar</p>
-        <p class="value">{{ reportItem.averageWeight | twoDigits }} g</p>
+        <p class="value">{{ reportItem.averageWeight | ZeroDigits }} g</p>
       </div>
       <div class="container-item">
         <p class="key">Odchyłka</p>
         <p class="value"
-           [ngClass]="{'measurement-ok': reportItem.weightCorrect, 'measurement-nok': !reportItem.weightCorrect}">{{ reportItem.weightDeviation | twoDigits }}
+           [ngClass]="{'measurement-ok': reportItem.weightCorrect, 'measurement-nok': !reportItem.weightCorrect}">{{ reportItem.weightDeviation | ZeroDigits }}
           g</p>
       </div>
     </div>
