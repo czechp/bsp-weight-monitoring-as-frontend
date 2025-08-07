@@ -20,6 +20,8 @@
       <th>Lej 10 [g]</th>
       <th>Lej 11 [g]</th>
       <th>Lej 12 [g]</th>
+      <th>Zużycie parafiny odchyłka [%]</th>
+
     </tr>
     </thead>
 
@@ -34,6 +36,7 @@
       <td class="ok" *ngFor="let measurement of line.measurements" [ngClass]="{'nok': measurement.value < line.product.productMinimumWeight || measurement.value > line.product.productMaximumWeight}">
         {{measurement.value | twoDigits}}
       </td>
+      <td>{{line.paraffinConsumption.paraffinDeviationPercent.toFixed(1)}}</td>
     </tr>
     </tbody>
   </table>

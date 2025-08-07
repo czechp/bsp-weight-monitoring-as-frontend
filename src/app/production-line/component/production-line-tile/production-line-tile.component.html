@@ -58,12 +58,13 @@
   <hr>
   <p class="section-main-title">Parafina</p>
   <div class="info-container">
-    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption / 1000).toFixed(0) }}
+    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption / 1000) | twoDigits }}
       kg</p>
     <p>Zużycie parafiny
-      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000).toFixed(0) }} kg
+      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000) | twoDigits }} kg
     </p>
-    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation / 1000).toFixed(0) }}
-      kg</p>
+    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation / 1000) | twoDigits }} kg
+      <br> {{productionLine.paraffinConsumption.paraffinDeviationPercent.toFixed(1)}} %
+    </p>
   </div>
 </div>

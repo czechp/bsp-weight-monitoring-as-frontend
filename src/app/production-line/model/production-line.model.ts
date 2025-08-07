@@ -18,6 +18,7 @@ export type ParaffinConsumptionModel = {
   paraffinRealConsumption: number;
   paraffinExpectedConsumption: number;
   paraffinDeviation: number;
+  paraffinDeviationPercent: number;
 };
 
 export type EfficiencyModel = {
