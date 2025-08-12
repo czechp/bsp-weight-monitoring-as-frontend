@@ -9,6 +9,7 @@ import { ReportDetailsComponent } from './component/report-details/report-detail
 import {ProductionLineModule} from "../production-line/production-line.module";
 import { ProductionEfficiencyChartComponent } from './component/production-efficiency-chart/production-efficiency-chart.component';
 import {NgChartsModule} from "ng2-charts";
+import { WeightCorrectnessChartComponent } from './component/weight-correctnes-chart/weight-correctness-chart.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {NgChartsModule} from "ng2-charts";
     ReportFilterFormComponent,
     ReportDetailsPageComponent,
     ReportDetailsComponent,
-    ProductionEfficiencyChartComponent
+    ProductionEfficiencyChartComponent,
+    WeightCorrectnessChartComponent
   ],
     imports: [
         CommonModule, SharedModule, ProductionLineModule, NgChartsModule

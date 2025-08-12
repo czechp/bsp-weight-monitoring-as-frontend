@@ -59,6 +59,7 @@
 <hr>
 <app-production-efficiency-chart [reportItems]="report.reportItems" />
 <hr>
+<app-weight-correctness-chart [product]="report.product"  [reportItems]="report.reportItems" />
 <div class="" *ngFor="let reportItem of report.reportItems">
   <h2>Pomiary wagi</h2>
   <div class="measurement-row">
