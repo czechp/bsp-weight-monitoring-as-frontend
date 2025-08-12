@@ -7,6 +7,8 @@ import { ReportFilterFormComponent } from './component/report-filter-form/report
 import { ReportDetailsPageComponent } from './page/report-details-page/report-details-page.component';
 import { ReportDetailsComponent } from './component/report-details/report-details.component';
 import {ProductionLineModule} from "../production-line/production-line.module";
+import { ProductionEfficiencyChartComponent } from './component/production-efficiency-chart/production-efficiency-chart.component';
+import {NgChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -15,10 +17,11 @@ import {ProductionLineModule} from "../production-line/production-line.module";
     ReportListComponent,
     ReportFilterFormComponent,
     ReportDetailsPageComponent,
-    ReportDetailsComponent
+    ReportDetailsComponent,
+    ProductionEfficiencyChartComponent
   ],
     imports: [
-        CommonModule, SharedModule, ProductionLineModule
+        CommonModule, SharedModule, ProductionLineModule, NgChartsModule
     ]
 })
 export class ReportModule {
