@@ -1,4 +1,4 @@
 <app-page title="Raporty BRC">
-  <app-report-filter-form [filterForm]="filterForm" (applyFilter)="applyFilter()" />
+  <app-date-filter-form [filterForm]="filterForm" (applyFilter)="applyFilter()" />
   <app-report-list *ngIf="reports$ | async as reports" [reports]="reports"/>
 </app-page>
