@@ -1,11 +1,16 @@
-@import "src/variables";
+@import "../../../../variables";
 
 .normal {
   border-color: $font-color;
   color: $color-warning;
 }
 
-.critical{
+.critical {
   border-color: $font-color;
   color: $color-nok;
+}
+
+table {
+  width: auto;
+  margin-bottom: 2rem;
 }

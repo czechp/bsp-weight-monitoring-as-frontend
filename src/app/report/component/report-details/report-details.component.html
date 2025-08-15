@@ -60,6 +60,7 @@
 <app-production-efficiency-chart [reportItems]="report.reportItems" />
 <hr>
 <app-weight-correctness-chart [product]="report.product"  [reportItems]="report.reportItems" />
+<hr>
 <div class="" *ngFor="let reportItem of report.reportItems">
   <h2>Pomiary wagi</h2>
   <div class="measurement-row">
@@ -89,6 +90,8 @@
                          [measurement]="measurement"
                          [product]="report.product"></app-measurement-tile>
   </div>
+  <h2>Alerty</h2>
+  <app-alerts-table  *ngIf="reportItem.alerts.length > 0" [alerts]="reportItem.alerts" />
   <h2>Produkcja</h2>
   <div class="production-efficiency">
     <p class="production-efficiency-item">Oczekiwana <br> {{reportItem.efficiency.expectedProduction}} <br> <app-progress-bar [value]="reportItem.efficiency.expectedProductionPercent" /></p>

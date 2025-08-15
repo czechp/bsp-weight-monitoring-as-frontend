@@ -1,4 +1,5 @@
 import {EfficiencyModel, MeasurementModel, ProductModel} from "../../production-line/model/production-line.model";
+import {AlertModel} from "./alerts.model";
 
 export type ReportModel = {
   id: number;
@@ -25,4 +26,5 @@ export type ReportItemModel = {
   weightDeviation: number;
   efficiency: EfficiencyModel;
   measurements: MeasurementModel[];
+  alerts: AlertModel[];
 }

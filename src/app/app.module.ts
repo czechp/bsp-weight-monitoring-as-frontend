@@ -16,11 +16,10 @@ import {ProcessValueModule} from "./proces-values/process-value.module";
 import {DashboardsModule} from "./dashboards/dashboards.module";
 import {ProductionLineModule} from "./production-line/production-line.module";
 import {ReportModule} from "./report/report.module";
-import {AlertModule} from "./alert/alert.module";
 
 @NgModule({
   declarations: [AppComponent,],
-  imports: [DashboardsModule, LayoutModule, UsersModule, SettingsModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule, ControllersModule, ProcessValueModule, ProductionLineModule, ReportModule, AlertModule],
+  imports: [DashboardsModule, LayoutModule, UsersModule, SettingsModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule, ControllersModule, ProcessValueModule, ProductionLineModule, ReportModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

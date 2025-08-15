@@ -10,6 +10,10 @@ import {ProductionLineModule} from "../production-line/production-line.module";
 import { ProductionEfficiencyChartComponent } from './component/production-efficiency-chart/production-efficiency-chart.component';
 import {NgChartsModule} from "ng2-charts";
 import { WeightCorrectnessChartComponent } from './component/weight-correctnes-chart/weight-correctness-chart.component';
+import {AlertsTableComponent} from "./component/alerts-table/alerts-table.component";
+import {AlertTypePipe} from "./pipe/alert-type.pipe";
+import {ProductUtilizationWayPipe} from "./pipe/product-utilization-way.pipe";
+import {AlertsPageComponent} from "./page/alerts-page/alerts-page.component";
 
 
 @NgModule({
@@ -20,7 +24,11 @@ import { WeightCorrectnessChartComponent } from './component/weight-correctnes-c
     ReportDetailsPageComponent,
     ReportDetailsComponent,
     ProductionEfficiencyChartComponent,
-    WeightCorrectnessChartComponent
+    WeightCorrectnessChartComponent,
+    AlertsTableComponent,
+    AlertTypePipe,
+    ProductUtilizationWayPipe,
+    AlertsPageComponent
   ],
   exports: [
     DateFilterFormComponent
