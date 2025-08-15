@@ -57,6 +57,7 @@ import {
 } from "./production-line/page/production-line-measurements-list-page/production-line-measurements-list.component";
 import {ReportListPageComponent} from "./report/page/report-list-page/report-list-page.component";
 import {ReportDetailsPageComponent} from "./report/page/report-details-page/report-details-page.component";
+import {AlertsPageComponent} from "./alert/page/alerts-page/alerts-page.component";
 
 const routes: Routes = [
     {path: "", component: ProductionLineListPageComponent, canActivate: [loginGuard]},
@@ -150,8 +151,12 @@ const routes: Routes = [
       path: "report-details/:id",
       component: ReportDetailsPageComponent,
       canActivate: [loginGuard]
-    }
-
+    },
+    {
+      path: "alerts",
+      component: AlertsPageComponent,
+      canActivate: [loginGuard]
+    },
   ]
 ;
 

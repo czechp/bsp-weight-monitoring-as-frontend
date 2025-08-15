@@ -1,0 +1,30 @@
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Data</th>
+    <th>Linia</th>
+    <th>Waga poprawna [g]</th>
+    <th>Średnia waga [g]</th>
+    <th>Odchyłka [g]</th>
+    <th>Odchyłka [%]</th>
+    <th>Typ alertu</th>
+    <th>Utylizacja produktu</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let alert of alerts">
+    <td [ngClass]="{'critical': alert.alertType === AlertType.CRITICAL}" class="normal">
+      <fa-icon icon="triangle-exclamation" size="2x"/>
+    </td>
+    <td>{{ alert.createdAt | localDateTime }}</td>
+    <td>{{ alert.lineName }}</td>
+    <td>{{alert.correctWeight}}</td>
+    <td>{{ alert.averageWeight }}</td>
+    <td>{{alert.deviation}}</td>
+    <td>{{alert.deviationPercent}}</td>
+    <td>{{ alert.alertType | alertType }}</td>
+    <td>{{ alert.productUtilizationWay | productUtilizationWay }}</td>
+  </tr>
+  </tbody>
+</table>

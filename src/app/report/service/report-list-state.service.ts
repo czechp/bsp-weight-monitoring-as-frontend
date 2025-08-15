@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {ReportModel} from "../model/report.model";
-import {DateFormHandler} from "../../shared/model/date-filter.form";
+import {DateFilterFormRange, DateFormHandler} from "../../shared/model/date-filter.form";
 import {ReportHttpService} from "./report-http.service";
 
 @Injectable()
@@ -9,7 +9,7 @@ export class ReportListStateService {
   private formHandler = new DateFormHandler();
 
   reports$ = new BehaviorSubject<ReportModel[] | null>(null);
-  filterForm = this.formHandler.getFilterForm();
+  filterForm = this.formHandler.getFilterForm(DateFilterFormRange.MONTH);
 
   constructor(private httpService: ReportHttpService) {
     this.getReports();

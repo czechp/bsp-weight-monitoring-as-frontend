@@ -1,0 +1,17 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {AlertModel} from "../model/alerts.model";
+import {BACKEND_URL} from "../../shared/configuration/URL";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AlertHttpService {
+
+  constructor(private httpClient: HttpClient) {
+  }
+
+  getAlerts(from: string, to: string) {
+    return this.httpClient.get<AlertModel[]>(`${BACKEND_URL}/alerts`, {params: {from, to}});
+  }
+}

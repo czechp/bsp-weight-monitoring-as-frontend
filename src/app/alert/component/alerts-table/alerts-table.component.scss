@@ -1,0 +1,11 @@
+@import "src/variables";
+
+.normal {
+  border-color: $font-color;
+  color: $color-warning;
+}
+
+.critical{
+  border-color: $font-color;
+  color: $color-nok;
+}

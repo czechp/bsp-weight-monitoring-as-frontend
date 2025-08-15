@@ -22,9 +22,12 @@ import { WeightCorrectnessChartComponent } from './component/weight-correctnes-c
     ProductionEfficiencyChartComponent,
     WeightCorrectnessChartComponent
   ],
-    imports: [
-        CommonModule, SharedModule, ProductionLineModule, NgChartsModule
-    ]
+  exports: [
+    DateFilterFormComponent
+  ],
+  imports: [
+    CommonModule, SharedModule, ProductionLineModule, NgChartsModule
+  ]
 })
 export class ReportModule {
 }
