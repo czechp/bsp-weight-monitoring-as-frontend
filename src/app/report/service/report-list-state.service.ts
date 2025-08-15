@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {ReportModel} from "../model/report.model";
-import {ReportFormHandler} from "../model/report.form";
+import {DateFormHandler} from "../../shared/model/date-filter.form";
 import {ReportHttpService} from "./report-http.service";
 
 @Injectable()
 export class ReportListStateService {
-  private formHandler = new ReportFormHandler();
+  private formHandler = new DateFormHandler();
 
   reports$ = new BehaviorSubject<ReportModel[] | null>(null);
   filterForm = this.formHandler.getFilterForm();

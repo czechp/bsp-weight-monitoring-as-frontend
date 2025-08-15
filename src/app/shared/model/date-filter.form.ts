@@ -5,7 +5,7 @@ export type DateFilterForm = {
   to: FormControl<string | null>,
 }
 
-export class ReportFormHandler{
+export class DateFormHandler {
 
   getFilterForm(): FormGroup<DateFilterForm> {
     const today = new Date();

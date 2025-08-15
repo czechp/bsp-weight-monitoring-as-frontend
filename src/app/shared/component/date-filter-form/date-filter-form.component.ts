@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {DateFilterForm} from "../../model/report.form";
+import {DateFilterForm} from "../../model/date-filter.form";
 import {FormGroup} from "@angular/forms";
 
 @Component({
