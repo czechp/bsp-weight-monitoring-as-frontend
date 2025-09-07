@@ -92,11 +92,5 @@
   </div>
   <h2>Alerty</h2>
   <app-alerts-table  *ngIf="reportItem.alerts.length > 0" [alerts]="reportItem.alerts" />
-  <h2>Produkcja</h2>
-  <div class="production-efficiency">
-    <p class="production-efficiency-item">Oczekiwana <br> {{reportItem.efficiency.expectedProduction}} <br> <app-progress-bar [value]="reportItem.efficiency.expectedProductionPercent" /></p>
-    <p class="production-efficiency-item">Rzeczywista <br> {{reportItem.efficiency.productCounter}} <br> <app-progress-bar [value]="reportItem.efficiency.productionProgressPercent" /></p>
-
-  </div>
   <hr>
 </div>

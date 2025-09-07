@@ -29,14 +29,40 @@
     <tr *ngFor="let line of productionLines">
       <td>{{ line.name }}</td>
       <td><fa-icon icon="power-off" [ngClass]="{'line-working':line.lineActive}"/></td>
-      <td>{{line.product.productName}}</td>
-      <td>{{line.product.productMinimumWeight}}</td>
-      <td>{{line.product.productCorrectWeight}}</td>
-      <td>{{line.product.productMaximumWeight }}</td>
-      <td class="ok" *ngFor="let measurement of line.measurements" [ngClass]="{'nok': measurement.value < line.product.productMinimumWeight || measurement.value > line.product.productMaximumWeight}">
-        {{measurement.value}}
+      <td>
+        <span title="Nazwa produktu produkowanego na tej linii">
+          {{line.product.productName}}
+        </span>
       </td>
-      <td class="ok" [ngClass]="{'nok':line.paraffinConsumption.paraffinDeviationPercent > 0}">{{line.paraffinConsumption.paraffinDeviationPercent}}</td>
+      <td>
+        <span title="Minimalna dopuszczalna waga produktu">
+          {{line.product.productMinimumWeight}}
+        </span>
+      </td>
+      <td>
+        <span title="Waga referencyjna produktu">
+          {{line.product.productCorrectWeight}}
+        </span>
+      </td>
+      <td>
+        <span title="Maksymalna dopuszczalna waga produktu">
+          {{line.product.productMaximumWeight}}
+        </span>
+      </td>
+      <td class="ok" *ngFor="let measurement of line.measurements" [ngClass]="{'nok': measurement.value < line.product.productMinimumWeight || measurement.value > line.product.productMaximumWeight}">
+        <span title="Wartość ostatniego pomiaru wagi produktu dla danego leja">
+          {{measurement.value}}
+        </span>
+        <br>
+        <span title="Średnia wartość pomiarów dla danego leja na tej zmianie">
+          {{measurement.measurementsAverage}}
+        </span>
+      </td>
+      <td class="ok" [ngClass]="{'nok':line.paraffinConsumption.paraffinDeviationPercent > 0}">
+        <span title="Procentowa odchyłka zużycia parafiny na tej zmianie">
+          {{line.paraffinConsumption.paraffinDeviationPercent}}
+        </span>
+      </td>
     </tr>
     </tbody>
   </table>

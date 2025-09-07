@@ -12,6 +12,7 @@ export type MeasurementModel = {
   dosingNr: number;
   value: number;
   deviation: number;
+  measurementsAverage: number;
 };
 
 export type ParaffinConsumptionModel = {

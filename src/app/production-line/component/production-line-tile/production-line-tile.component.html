@@ -4,21 +4,81 @@
     <div class="">
       <app-communication-error *ngIf="productionLine.communicationError"/>
     </div>
-    <span>Ostatnia aktualizacja <br>{{ productionLine.lastUpdate ? (productionLine.lastUpdate | localDateTime) : 'Brak danych' }}</span>
+    <span>Ostatnia aktualizacja <br>
+      <span title="Data i godzina ostatniej aktualizacji danych linii produkcyjnej">
+        {{ productionLine.lastUpdate ? (productionLine.lastUpdate | localDateTime) : 'Brak danych' }}
+      </span>
+    </span>
+  </div>
+  <hr>
+
+  <p class="section-main-title">Produkt</p>
+  <p class="title">
+    <span title="Nazwa produktu produkowanego na tej linii">
+      {{ productionLine.product.productName }}
+    </span>
+  </p>
+  <hr>
+
+  <p class="section-title">Waga</p>
+  <div class="info-container">
+    <p>Min. <br>
+      <span title="Minimalna dopuszczalna waga produktu">
+        {{ productionLine.product.productMinimumWeight }}
+      </span> g
+    </p>
+    <p class="larger">OK <br>
+      <span title="Referencyjna waga produktu">
+        {{ productionLine.product.productCorrectWeight }}
+      </span> g
+    </p>
+    <p>Max. <br>
+      <span title="Maksymalna dopuszczalna waga produktu">
+        {{ productionLine.product.productMaximumWeight }}
+      </span> g
+    </p>
+  </div>
+  <hr>
+  <p class="section-title">Wymiary kubka </p>
+  <div class="info-container">
+    <p>Wysokość <br>
+      <span title="Wysokość kubka produktu">
+        {{ productionLine.product.cupHeight }}
+      </span> mm
+    </p>
+    <p>Średnica <br>
+      <span title="Średnica kubka produktu">
+        {{ productionLine.product.cupDiameter}}
+      </span> mm
+    </p>
+    <p>Waga <br>
+      <span title="Waga pustego kubka produktu">
+        {{ productionLine.product.cupWeight}}
+      </span> g
+    </p>
   </div>
   <hr>
 
   <p class="section-main-title">Produkcja</p>
   <div class="info-container-center">
-    <p>Produkcja na zmianę <br> {{ productionLine.efficiency.productsPerShift }} szt.
+    <p>Norma na zmianę<br>
+      <span title="Oczekiwana liczba produktu wyprodukwoanego na zmianę na zmianę ">
+        {{ productionLine.efficiency.productsPerShift }}
+      </span> szt.
       <br>
     </p>
   </div>
   <div style="width: 100%">
-    <div class="efficiency-item">Oczekiwana. <br> {{ productionLine.efficiency.expectedProduction }} szt. <br>
+    <div class="efficiency-item">Oczekiwana. <br>
+      <span title="Oczekiwana liczba wyprodukowanych produktów do tej pory">
+        {{ productionLine.efficiency.expectedProduction }}
+      </span> szt. <br>
       <app-progress-bar [value]="productionLine.efficiency.expectedProductionPercent "/>
     </div>
-    <div class="efficiency-item">Aktualna. <br>{{ productionLine.efficiency.productCounter }} szt. <br>
+    <div class="efficiency-item">Aktualna. <br>
+      <span title="Aktualna liczba wyprodukowanych produktów do tej pory">
+        {{ productionLine.efficiency.productCounter }}
+      </span> szt. <br>
       <app-progress-bar [value]="productionLine.efficiency.productionProgressPercent"/>
     </div>
   </div>
@@ -26,9 +86,13 @@
 
   <p class="section-main-title">Pomiary</p>
   <p class="section-title">Średnia</p>
-  <p>{{ productionLine.averageMeasurement}} g</p>
+  <p>
+    <span title="Średnia waga produktu z ostatnich pomiarów">
+      {{ productionLine.averageMeasurement}}
+    </span> g
+  </p>
   <p class="section-title">Aktualne pomiary z lejków</p>
-  <p style="font-size: smaller">Nr.lejka / Waga / Odchyłka</p>
+  <p style="font-size: smaller">Nr.lejka / Waga / Waga średnia /Odchyłka</p>
   <div class="measurement-container">
     <app-measurement-tile class="measurement-tile"
                           *ngFor="let measurement of productionLine.measurements"
@@ -38,33 +102,27 @@
   </div>
   <hr>
 
-  <p class="section-main-title">Produkt</p>
-  <p class="title">{{ productionLine.product.productName }}</p>
-  <hr>
-
-  <p class="section-title">Waga</p>
-  <div class="info-container">
-    <p>Min. <br> {{ productionLine.product.productMinimumWeight }} g</p>
-    <p class="larger">OK <br> {{ productionLine.product.productCorrectWeight }} g</p>
-    <p>Max. <br>{{ productionLine.product.productMaximumWeight }} g</p>
-  </div>
-  <hr>
-  <p class="section-title">Wymiary kubka </p>
-  <div class="info-container">
-    <p>Wysokość <br>{{ productionLine.product.cupHeight }} mm</p>
-    <p>Średnica <br>{{ productionLine.product.cupDiameter}} mm</p>
-    <p>Waga <br>{{ productionLine.product.cupWeight}} g</p>
-  </div>
-  <hr>
   <p class="section-main-title">Parafina</p>
   <div class="info-container">
-    <p>Zużycie parafiny<br><br> <br>{{ (productionLine.paraffinConsumption.paraffinRealConsumption) }}
-      kg</p>
-    <p>Zużycie parafiny
-      (oczekiwane)<br><br>{{ (productionLine.paraffinConsumption.paraffinExpectedConsumption) }} kg
+    <p>Zużycie parafiny<br><br> <br>
+      <span title="Rzeczywiste zużycie parafiny na tej zmianie">
+        {{ (productionLine.paraffinConsumption.paraffinRealConsumption) }}
+      </span> kg
     </p>
-    <p>Zużycie parafiny (odchyłka)<br><br>{{ (productionLine.paraffinConsumption.paraffinDeviation ) }} kg
-      <br> {{ productionLine.paraffinConsumption.paraffinDeviationPercent }} %
+    <p>Zużycie parafiny
+      (oczekiwane)<br><br>
+      <span title="Oczekiwane zużycie parafiny na tej zmianie">
+        {{ (productionLine.paraffinConsumption.paraffinExpectedConsumption) }}
+      </span> kg
+    </p>
+    <p>Zużycie parafiny (odchyłka)<br><br>
+      <span title="Różnica między rzeczywistym a oczekiwanym zużyciem parafiny na tej zmianie">
+        {{ (productionLine.paraffinConsumption.paraffinDeviation ) }}
+      </span> kg
+      <br>
+      <span title="Procentowa odchyłka zużycia parafiny na tej zmianie">
+        {{ productionLine.paraffinConsumption.paraffinDeviationPercent }}
+      </span> %
     </p>
   </div>
 </div>
