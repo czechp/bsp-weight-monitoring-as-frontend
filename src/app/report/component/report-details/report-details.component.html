@@ -2,57 +2,57 @@
   <div class="container-column">
     <div class="container-item">
       <p class="key">Linia</p>
-      <p class="value">{{ report.lineName }}</p>
+      <p class="value" title="Nazwa linii produkcyjnej">{{ report.lineName }}</p>
     </div>
     <div class="container-item">
       <p class="key">Zmiana</p>
-      <p class="value">{{ report.reportShift }}</p>
+      <p class="value" title="Numer zmiany produkcyjnej">{{ report.reportShift }}</p>
     </div>
     <div class="container-item">
       <p class="key">Produkt</p>
-      <p class="value">{{ report.product.productName }}</p>
+      <p class="value" title="Nazwa produktu">{{ report.product.productName }}</p>
     </div>
   </div>
   <div class="container-column">
     <div class="container-item">
       <p class="key">Waga OK</p>
-      <p class="value">{{ report.product.productCorrectWeight | ZeroDigits }} g</p>
+      <p class="value" title="Referencyjna waga produktu">{{ report.product.productCorrectWeight | ZeroDigits }} g</p>
     </div>
     <div class="container-item">
       <p class="key">Waga min.</p>
-      <p class="value">{{ report.product.productMinimumWeight | ZeroDigits }} g</p>
+      <p class="value" title="Minimalna dopuszczalna waga produktu">{{ report.product.productMinimumWeight | ZeroDigits }} g</p>
     </div>
     <div class="container-item">
       <p class="key">Waga max.</p>
-      <p class="value">{{ report.product.productMaximumWeight | ZeroDigits }} g</p>
+      <p class="value" title="Maksymalna dopuszczalna waga produktu">{{ report.product.productMaximumWeight | ZeroDigits }} g</p>
     </div>
   </div>
   <div class="container-column">
     <div class="container-item">
       <p class="key">Wyskość kubka</p>
-      <p class="value">{{ report.product.cupHeight | ZeroDigits }} mm</p>
+      <p class="value" title="Wysokość kubka produktu">{{ report.product.cupHeight | ZeroDigits }} mm</p>
     </div>
     <div class="container-item">
       <p class="key">Średnica kubka</p>
-      <p class="value">{{ report.product.cupDiameter.toFixed(1) }} mm</p>
+      <p class="value" title="Średnica kubka produktu">{{ report.product.cupDiameter.toFixed(1) }} mm</p>
     </div>
     <div class="container-item">
       <p class="key">Waga kubka</p>
-      <p class="value">{{ report.product.cupWeight.toFixed(1) }} g</p>
+      <p class="value" title="Waga pustego kubka">{{ report.product.cupWeight.toFixed(1) }} g</p>
     </div>
   </div>
   <div class="container-column">
     <div class="container-item">
       <p class="key">Status</p>
-      <p class="value">{{ report.reportOpen ? 'Otwarty' : 'Zamknięty' }}</p>
+      <p class="value" title="Status raportu">{{ report.reportOpen ? 'Otwarty' : 'Zamknięty' }}</p>
     </div>
     <div class="container-item">
       <p class="key">Data rozpoczęcia</p>
-      <p class="value">{{ report.startAt | localDateTime }}</p>
+      <p class="value" title="Data rozpoczęcia raportu">{{ report.startAt | localDateTime }}</p>
     </div>
     <div class="container-item">
       <p class="key">Data zamknięcia</p>
-      <p class="value">{{ report.closedAt | localDateTime }}</p>
+      <p class="value" title="Data zamknięcia raportu">{{ report.closedAt | localDateTime }}</p>
     </div>
   </div>
 </div>
@@ -67,17 +67,17 @@
     <div class="measurement-row-content">
       <div class="container-item">
         <p class="key">Data pomiaru</p>
-        <p class="value">{{ reportItem.createdAt | localTime }}</p>
+        <p class="value" title="Data i godzina wykonania pomiaru">{{ reportItem.createdAt | localTime }}</p>
       </div>
       <div class="container-item">
         <p class="key">Średni pomiar</p>
-        <p class="value">{{ reportItem.averageWeight | ZeroDigits }} g</p>
+        <p class="value" title="Średnia waga z średnich pomiarów z lejka">{{ reportItem.measurementsAverageOfAverages | ZeroDigits }} g</p>
       </div>
       <div class="container-item">
         <p class="key">Odchyłka</p>
         <p class="value"
-           [ngClass]="{'measurement-ok': reportItem.weightCorrect, 'measurement-nok': !reportItem.weightCorrect}">{{ reportItem.weightDeviation | ZeroDigits }}
-          g</p>
+           [ngClass]="{'measurement-ok': reportItem.weightCorrect, 'measurement-nok': !reportItem.weightCorrect}"
+           title="Odchylenie średniej od referencyjnej wagi">{{ reportItem.averageOfAveragesDeviation | ZeroDigits }} g</p>
       </div>
     </div>
     <div class="measurement-row-icon">

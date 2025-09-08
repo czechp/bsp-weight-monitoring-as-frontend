@@ -27,4 +27,6 @@ export type ReportItemModel = {
   efficiency: EfficiencyModel;
   measurements: MeasurementModel[];
   alerts: AlertModel[];
+  measurementsAverageOfAverages: number;
+  averageOfAveragesDeviation: number;
 }

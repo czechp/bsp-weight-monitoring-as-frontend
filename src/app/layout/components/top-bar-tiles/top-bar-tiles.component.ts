@@ -18,7 +18,7 @@ export type IconTile = {
 export class TopBarTilesComponent {
   iconTiles: IconTile[] = [
     {iconName: "scale-balanced", title: "Moduły wagowe", onClick: () => this.router.navigate(["production-lines"])},
-    {iconName: "table", title: "Raporty BRC", onClick: () => this.router.navigate(["reports"])},
+    {iconName: "table", title: "Raporty zmianowe", onClick: () => this.router.navigate(["reports"])},
     {iconName: "bell", title: "Alerty", onClick: () => this.router.navigate(["alerts"])},
     {iconName: "gear", title: "Ustawienia", onClick: () => this.router.navigate(["settings", "statistics"])},
 
