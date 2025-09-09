@@ -1,4 +1,7 @@
 <app-page>
-  <app-date-filter-form [filterForm]="alertsFilterForm" (applyFilter)="filterAlerts()" />
+  <app-alert-filter-form *ngIf="productionLines$ | async as productionLines"
+                         [filterForm]="alertsFilterForm"
+                         [productionLines]="productionLines"
+                         (applyFilter)="filterAlerts()" />
   <app-alerts-table *ngIf="alerts$ | async as alerts"[alerts]="alerts" />
 </app-page>

@@ -14,6 +14,7 @@ import {AlertsTableComponent} from "./component/alerts-table/alerts-table.compon
 import {AlertTypePipe} from "./pipe/alert-type.pipe";
 import {ProductUtilizationWayPipe} from "./pipe/product-utilization-way.pipe";
 import {AlertsPageComponent} from "./page/alerts-page/alerts-page.component";
+import { AlertFilterFormComponent } from './component/alert-filter-form/alert-filter-form.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {AlertsPageComponent} from "./page/alerts-page/alerts-page.component";
     AlertsTableComponent,
     AlertTypePipe,
     ProductUtilizationWayPipe,
-    AlertsPageComponent
+    AlertsPageComponent,
+    AlertFilterFormComponent
   ],
   exports: [
     DateFilterFormComponent

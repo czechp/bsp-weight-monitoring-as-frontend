@@ -10,6 +10,7 @@ import {AlertsStateService} from "../../service/alerts-state.service";
 export class AlertsPageComponent {
   alertsFilterForm = this.stateService.alertsFilterForm;
   alerts$ = this.stateService.alerts$;
+  productionLines$ = this.stateService.productionLines$;
 
   constructor(private stateService: AlertsStateService) {
   }

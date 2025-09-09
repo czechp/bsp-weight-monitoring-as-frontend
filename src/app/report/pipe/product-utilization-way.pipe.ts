@@ -8,7 +8,6 @@ export class ProductUtilizationWayPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     const utilizationWay = value as ProductUtilizationWay;
-    console.log(utilizationWay);
 
     switch (utilizationWay) {
       case ProductUtilizationWay.PRODUCT_SEPARATED:

@@ -11,7 +11,11 @@ export class AlertHttpService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAlerts(from: string, to: string) {
-    return this.httpClient.get<AlertModel[]>(`${BACKEND_URL}/alerts`, {params: {from, to}});
+  getAlerts(from: string, to: string, lineName: string | null) {
+    const params: any = {from, to};
+    if (lineName !== null && lineName !== 'null') {
+      params.lineName = lineName;
+    }
+    return this.httpClient.get<AlertModel[]>(`${BACKEND_URL}/alerts`, {params});
   }
 }

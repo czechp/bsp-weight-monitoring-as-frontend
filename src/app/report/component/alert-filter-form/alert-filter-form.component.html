@@ -1,0 +1,20 @@
+<div class="container-center">
+  <form method="dialog" [formGroup]="filterForm" (ngSubmit)="applyFilterOnClick()">
+    <div class="form-item">
+      <label>Od</label>
+      <input type="date" formControlName="from">
+    </div>
+    <div class="form-item">
+      <label>Do</label>
+      <input type="date" formControlName="to">
+    </div>
+    <div class="form-item">
+      <label>Linia</label><br>
+      <select formControlName="lineName">
+        <option [value]="null">Wszystkie</option>
+        <option *ngFor="let line of productionLines" [value]="line.name">{{ line.name }}</option>
+      </select>
+    </div>
+    <button class="button-ok">Wyszukaj</button>
+  </form>
+</div>
