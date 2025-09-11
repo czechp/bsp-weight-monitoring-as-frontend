@@ -70,14 +70,14 @@
         <p class="value" title="Data i godzina wykonania pomiaru">{{ reportItem.createdAt | localTime }}</p>
       </div>
       <div class="container-item">
-        <p class="key">Średni pomiar</p>
-        <p class="value" title="Średnia waga z średnich pomiarów z lejka">{{ reportItem.measurementsAverageOfAverages | ZeroDigits }} g</p>
+        <p class="key">Średni pomiar godzinowy</p>
+        <p class="value" title="Średnia waga z średnich pomiarów z ostatniej godziny">{{ reportItem.averageOfAverageLastHour | ZeroDigits }} g</p>
       </div>
       <div class="container-item">
         <p class="key">Odchyłka</p>
         <p class="value"
            [ngClass]="{'measurement-ok': reportItem.weightCorrect, 'measurement-nok': !reportItem.weightCorrect}"
-           title="Odchylenie średniej od referencyjnej wagi">{{ reportItem.averageOfAveragesDeviation | ZeroDigits }} g</p>
+           title="Odchylenie średniej z ostatniej goodziny od referencyjnej wagi">{{ reportItem.averageOfAverageLastHourDeviation | ZeroDigits }} g</p>
       </div>
     </div>
     <div class="measurement-row-icon">

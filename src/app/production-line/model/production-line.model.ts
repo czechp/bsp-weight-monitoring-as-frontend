@@ -13,6 +13,7 @@ export type MeasurementModel = {
   value: number;
   deviation: number;
   measurementsAverage: number;
+  measurementsHourlyAverage: number;
 };
 
 export type ParaffinConsumptionModel = {
@@ -43,6 +44,8 @@ export type ProductionLineModel = {
   communicationError: boolean;
   lastUpdate: string;
   efficiency: EfficiencyModel;
+  averageFromMeasurementsAverage: number;
+  averageFromAverageLastHour: number;
 };
 
 

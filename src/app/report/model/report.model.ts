@@ -29,4 +29,7 @@ export type ReportItemModel = {
   alerts: AlertModel[];
   measurementsAverageOfAverages: number;
   averageOfAveragesDeviation: number;
+  averageOfAverageLastHour: number
+  averageOfAverageLastHourDeviation: number;
+
 }
