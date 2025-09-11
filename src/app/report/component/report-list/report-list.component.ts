@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ReportModel} from "../../model/report.model";
 import {Router} from "@angular/router";
 
@@ -10,10 +10,12 @@ import {Router} from "@angular/router";
 export class ReportListComponent {
   @Input() reports!: ReportModel[];
 
+  @Output() reportClick = new EventEmitter<number>();
+
   constructor(private router: Router) {
   }
 
   navigateToDetails(reportId: number) {
-    this.router.navigate(["/report-details", reportId]);
+    this.reportClick.next(reportId);
   }
 }

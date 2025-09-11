@@ -1,0 +1,69 @@
+@import "src/variables";
+
+.container {
+  width: 100%;
+}
+
+p {
+  text-align: center;
+}
+
+.key {
+}
+
+.value {
+  font-size: large;
+}
+
+.container-item {
+  margin-bottom: 2rem;
+}
+
+hr {
+  margin-bottom: 3rem;
+}
+
+.measurement-row {
+  display: flex;
+}
+
+.measurement-row-content {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.measurement-row-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.measurement-row-content > .container-item {
+  margin-bottom: 0;
+}
+
+.measurement-ok {
+  color: $color-success
+}
+
+.measurement-nok {
+  color: $color-nok
+}
+
+.production-efficiency {
+  display: flex;
+  justify-content: space-around;
+}
+
+.production-efficiency-item {
+  width: 40%;
+}
+
+.measurement-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+}

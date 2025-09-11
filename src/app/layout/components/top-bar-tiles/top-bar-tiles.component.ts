@@ -19,6 +19,7 @@ export class TopBarTilesComponent {
   iconTiles: IconTile[] = [
     {iconName: "scale-balanced", title: "Moduły wagowe", onClick: () => this.router.navigate(["production-lines"])},
     {iconName: "table", title: "Raporty zmianowe", onClick: () => this.router.navigate(["reports"])},
+    {iconName: "check-to-slot", title: "Raporty BRC", onClick: () => this.router.navigate(["reports", {brc: true}])},
     {iconName: "bell", title: "Alerty", onClick: () => this.router.navigate(["alerts"])},
     {iconName: "gear", title: "Ustawienia", onClick: () => this.router.navigate(["settings", "statistics"])},
 

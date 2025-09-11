@@ -58,6 +58,7 @@ import {
 import {ReportListPageComponent} from "./report/page/report-list-page/report-list-page.component";
 import {ReportDetailsPageComponent} from "./report/page/report-details-page/report-details-page.component";
 import {AlertsPageComponent} from "./report/page/alerts-page/alerts-page.component";
+import {ReportBrcDetailsPageComponent} from "./report/page/report-brc-details-page/report-brc-details-page.component";
 
 const routes: Routes = [
     {path: "", component: ProductionLineListPageComponent, canActivate: [loginGuard]},
@@ -150,6 +151,11 @@ const routes: Routes = [
     {
       path: "report-details/:id",
       component: ReportDetailsPageComponent,
+      canActivate: [loginGuard]
+    },
+    {
+      path: "report-brc-details/:id",
+      component: ReportBrcDetailsPageComponent,
       canActivate: [loginGuard]
     },
     {

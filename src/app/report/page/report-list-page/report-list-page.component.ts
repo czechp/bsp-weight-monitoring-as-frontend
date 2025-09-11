@@ -17,4 +17,8 @@ export class ReportListPageComponent {
   applyFilter() {
     this.stateService.getReports();
   }
+
+  navigateToDetails(reportId: number) {
+    this.stateService.navigateToDetails(reportId);
+  }
 }

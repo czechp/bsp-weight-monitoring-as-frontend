@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="container-column">
+    <div class="container-item">
+      <p class="key">Linia</p>
+      <p class="value" title="Nazwa linii produkcyjnej">{{ report.lineName }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Zmiana</p>
+      <p class="value" title="Numer zmiany produkcyjnej">{{ report.reportShift }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Produkt</p>
+      <p class="value" title="Nazwa produktu">{{ report.product.productName }}</p>
+    </div>
+  </div>
+
+  <div class="container-column">
+    <div class="container-item">
+      <p class="key">Data rozpoczęcia</p>
+      <p class="value" title="Data rozpoczęcia raportu">{{ report.startAt | localDateTime }}</p>
+    </div>
+    <div class="container-item">
+      <p class="key">Data zamknięcia</p>
+      <p class="value" title="Data zamknięcia raportu">{{ report.closedAt | localDateTime }}</p>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="" *ngFor="let reportItem of report.reportItems">
+  <h2>Pomiar</h2>
+  <div class="measurement-row">
+    <div class="measurement-row-content">
+      <div class="container-item">
+        <p class="key">Data pomiaru</p>
+        <p class="value" title="Data i godzina wykonania pomiaru">{{ reportItem.createdAt | localTime }}</p>
+      </div>
+      <div class="container-item">
+        <p class="key">Średni pomiar godzinowy</p>
+        <p class="value" title="Średnia waga z średnich pomiarów z ostatniej godziny">{{ reportItem.averageOfAverageLastHour | ZeroDigits }} g</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <ng-container *ngIf="reportItem.alerts.length > 0" >
+    <h2>Alerty</h2>
+    <app-alerts-table  [alerts]="reportItem.alerts" />
+  </ng-container>
+
+  <hr>
+</div>
