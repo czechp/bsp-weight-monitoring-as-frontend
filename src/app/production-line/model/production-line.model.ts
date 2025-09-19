@@ -29,6 +29,8 @@ export type EfficiencyModel = {
   productsPerShift: number;
   expectedProductionPercent: number;
   productionProgressPercent: number;
+  wrongProductsCounter: number;
+  wrongProductsCounterPercent: number;
 }
 
 export type ProductionLineModel = {

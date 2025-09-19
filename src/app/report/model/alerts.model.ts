@@ -1,3 +1,5 @@
+import {ProductModel} from "../../production-line/model/production-line.model";
+
 export type AlertModel = {
   id: number;
   version: number;
@@ -10,6 +12,7 @@ export type AlertModel = {
   productUtilizationWay: ProductUtilizationWay;
   deviation: number;
   deviationPercent: number;
+  product: ProductModel;
 };
 
 export enum AlertType { NORMAL = 'NORMAL', CRITICAL = 'CRITICAL' }

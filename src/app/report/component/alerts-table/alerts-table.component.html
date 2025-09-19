@@ -4,12 +4,13 @@
     <th></th>
     <th>Data</th>
     <th>Linia</th>
+    <th>Produkt</th>
     <th>Waga poprawna [g]</th>
     <th>Średnia waga [g]</th>
     <th>Odchyłka [g]</th>
     <th>Odchyłka [%]</th>
     <th>Typ alertu</th>
-    <th>Utylizacja produktu</th>
+    <th>Podjęte działania</th>
   </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
     </td>
     <td>{{ alert.createdAt | localDateTime }}</td>
     <td>{{ alert.lineName }}</td>
+    <td>{{alert.product.productName}}</td>
     <td>{{alert.correctWeight}}</td>
     <td>{{ alert.averageWeight }}</td>
     <td>{{alert.deviation}}</td>
