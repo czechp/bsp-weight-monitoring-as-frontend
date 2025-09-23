@@ -88,8 +88,9 @@
     </div>
     <div class="info-container-center">
       <p> Procentowa ilość poprawnych do niepoprawnych pomiarów [%]<br> <br>
-        <span title="Procentowy udział poprawnych do niepoprawnych produktów">
-        {{100 - productionLine.efficiency.wrongProductsCounterPercent}} %    -------------------------- {{productionLine.efficiency.wrongProductsCounterPercent}} %
+        <span class="" title="Procentowy udział poprawnych do niepoprawnych produktów">
+        <span class="percent-ok">{{100 - productionLine.efficiency.wrongProductsCounterPercent}} % </span>   -------------------------- <span (click)="wrongProductOnClick()"
+                                                                                                                                              class="percent-nok wrong-product-link">{{productionLine.efficiency.wrongProductsCounterPercent}} %</span>
       </span>
         <br>
       </p>

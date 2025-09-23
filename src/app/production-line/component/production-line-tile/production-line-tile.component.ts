@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductionLineModel} from "../../model/production-line.model";
 
 @Component({
@@ -8,5 +8,9 @@ import {ProductionLineModel} from "../../model/production-line.model";
 })
 export class ProductionLineTileComponent {
   @Input() productionLine!: ProductionLineModel;
+  @Output() wrongProductClick = new EventEmitter<ProductionLineModel>();
 
+  wrongProductOnClick() {
+    this.wrongProductClick.emit(this.productionLine);
+  }
 }

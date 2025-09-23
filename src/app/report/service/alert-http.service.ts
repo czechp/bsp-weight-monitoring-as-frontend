@@ -18,4 +18,8 @@ export class AlertHttpService {
     }
     return this.httpClient.get<AlertModel[]>(`${BACKEND_URL}/alerts`, {params});
   }
+
+  getAlertsForCurrentShiftAndLineName(lineName: string) {
+    return this.httpClient.get<AlertModel[]>(`${BACKEND_URL}/alerts/current-shift?lineName=${lineName}`);
+  }
 }

@@ -99,3 +99,22 @@ hr {
   text-align: center;
   margin-bottom: 1rem;
 }
+
+.wrong-product-link {
+  cursor: pointer;
+}
+
+
+.wrong-product-link:hover {
+  color: $color-ok;
+}
+
+.percent-ok{
+  font-size: large;
+  color: $color-success;
+}
+
+.percent-nok{
+  font-size: large;
+  color: $color-nok;
+}

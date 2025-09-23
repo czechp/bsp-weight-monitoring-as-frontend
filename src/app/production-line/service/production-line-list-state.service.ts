@@ -2,6 +2,7 @@ import {Injectable, OnDestroy} from '@angular/core';
 import {ProductionLineHttpService} from "./production-line-http.service";
 import {BehaviorSubject, interval, Subscription} from "rxjs";
 import {ProductionLineModel} from "../model/production-line.model";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class ProductionLineListStateService implements OnDestroy{
@@ -9,7 +10,7 @@ export class ProductionLineListStateService implements OnDestroy{
   private getProductionLinesSubscription: Subscription;
   private readonly REFRESH_INTERVAL = 10000;
 
-  constructor(private httpClient: ProductionLineHttpService) {
+  constructor(private httpClient: ProductionLineHttpService, private router: Router) {
     this.getProductionLines();
     this.getProductionLinesSubscription = this.getProductionLinesSubscription = interval(this.REFRESH_INTERVAL).subscribe(() => {
       this.getProductionLines();
@@ -24,5 +25,9 @@ export class ProductionLineListStateService implements OnDestroy{
 
   ngOnDestroy(): void {
     this.getProductionLinesSubscription.unsubscribe();
+  }
+
+  navigateToAlerts(productionLine: ProductionLineModel) {
+    this.router.navigate(['/alerts'], { queryParams: { lineName: productionLine.name} });
   }
 }
