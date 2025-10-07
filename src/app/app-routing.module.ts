@@ -59,6 +59,9 @@ import {ReportListPageComponent} from "./report/page/report-list-page/report-lis
 import {ReportDetailsPageComponent} from "./report/page/report-details-page/report-details-page.component";
 import {AlertsPageComponent} from "./report/page/alerts-page/alerts-page.component";
 import {ReportBrcDetailsPageComponent} from "./report/page/report-brc-details-page/report-brc-details-page.component";
+import {
+  HistoricalMeasurementsPageComponent
+} from "./historical-measurements/page/historical-measurements-page/historical-measurements-page.component";
 
 const routes: Routes = [
     {path: "", component: ProductionLineListPageComponent, canActivate: [loginGuard]},
@@ -163,6 +166,11 @@ const routes: Routes = [
       component: AlertsPageComponent,
       canActivate: [loginGuard]
     },
+    {
+      path: "historical-measurements/:lineName/:dosingNr",
+      component: HistoricalMeasurementsPageComponent,
+      canActivate: [loginGuard]
+    }
   ]
 ;
 

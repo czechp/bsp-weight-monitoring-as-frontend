@@ -11,7 +11,7 @@ export class ReportListStateService {
   private isBrc = false;
 
   reports$ = new BehaviorSubject<ReportModel[] | null>(null);
-  filterForm = this.formHandler.getFilterForm(DateFilterFormRange.MONTH);
+  filterForm = this.formHandler.getFilterForm(DateFilterFormRange.WEEK);
 
   constructor(private httpService: ReportHttpService, private activatedRouter: ActivatedRoute, private router: Router) {
     this.getReports();

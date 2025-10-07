@@ -25,7 +25,6 @@ import { ReportBrcDetailsComponent } from './component/report-brc-details/report
   declarations: [
     ReportListPageComponent,
     ReportListComponent,
-    DateFilterFormComponent,
     ReportDetailsPageComponent,
     ReportDetailsComponent,
     ProductionEfficiencyChartComponent,
@@ -39,7 +38,6 @@ import { ReportBrcDetailsComponent } from './component/report-brc-details/report
     ReportBrcDetailsComponent
   ],
   exports: [
-    DateFilterFormComponent
   ],
   imports: [
     CommonModule, SharedModule, ProductionLineModule, NgChartsModule

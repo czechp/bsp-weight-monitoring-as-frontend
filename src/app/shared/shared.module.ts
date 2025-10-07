@@ -33,9 +33,11 @@ import { ZeroDigitsPipe } from './pipe/zero-digits.pipe';
 import { LocalTimePipe } from './pipe/local-time.pipe';
 import { ProgressBarComponent } from './component/progress-bar/progress-bar.component';
 import { OneDigitsPipe } from './pipe/one-digits.pipe';
+import {DateFilterFormComponent} from "./component/date-filter-form/date-filter-form.component";
 
 @NgModule({
   declarations: [
+    DateFilterFormComponent,
     PageComponent,
     PageWithMenuComponent,
     InputErrorComponent,
@@ -100,7 +102,8 @@ import { OneDigitsPipe } from './pipe/one-digits.pipe';
     ZeroDigitsPipe,
     LocalTimePipe,
     ProgressBarComponent,
-    OneDigitsPipe
+    OneDigitsPipe,
+    DateFilterFormComponent
   ]
 })
 export class SharedModule {
