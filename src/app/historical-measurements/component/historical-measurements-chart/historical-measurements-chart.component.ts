@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Measurements} from "../../service/historical-measurements-state.service";
-import {ChartConfiguration} from "chart.js";
+import {ChartConfiguration, TooltipItem} from "chart.js";
 
 @Component({
   selector: 'app-historical-measurements-chart',
@@ -23,6 +23,27 @@ export class HistoricalMeasurementsChartComponent {
   chartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      tooltip: {
+        filter: (tooltipItem: TooltipItem<'line'>) => {
+          return tooltipItem.dataset.label === 'Pomiar';
+        },
+        callbacks: {
+          label: (tooltipItem: TooltipItem<'line'>) => {
+            const idx = tooltipItem.dataIndex;
+            return `Pomiar ${this.values[idx]} g`;
+          }
+        }
+      }
+    },
+    interaction: {
+      mode: 'nearest',
+      intersect: true
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true
+    }
   };
 
   @Input() set measurements(items: Measurements[]) {
@@ -41,7 +62,13 @@ export class HistoricalMeasurementsChartComponent {
           backgroundColor: 'blue',
           pointBackgroundColor: 'blue',
           pointBorderColor: 'white',
-          tension: 0.3
+          tension: 0.3,
+          showLine: true,
+          borderWidth: 2,
+          fill: false,
+          pointRadius: 5,
+          pointHoverRadius: 8,
+          pointHitRadius: 10
         },
         {
           data: this.referenceValue,
@@ -52,7 +79,8 @@ export class HistoricalMeasurementsChartComponent {
           pointBorderColor: 'white',
           tension: 0.3,
           fill: false,
-          pointRadius: 0
+          pointRadius: 0,
+          pointHitRadius: 0
         },
         {
           data: this.minValue,
@@ -63,7 +91,8 @@ export class HistoricalMeasurementsChartComponent {
           pointBorderColor: 'white',
           tension: 0.3,
           fill: false,
-          pointRadius: 0
+          pointRadius: 0,
+          pointHitRadius: 0
         },
         {
           data: this.maxValue,
@@ -74,7 +103,8 @@ export class HistoricalMeasurementsChartComponent {
           pointBorderColor: 'white',
           tension: 0.3,
           fill: false,
-          pointRadius: 0
+          pointRadius: 0,
+          pointHitRadius: 0
         },
       ]
     }
