@@ -1,0 +1,16 @@
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+button {
+  width: 20rem;
+}
+
+input {
+  width: 150%;
+}

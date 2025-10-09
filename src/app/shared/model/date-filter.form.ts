@@ -5,6 +5,10 @@ export type DateFilterForm = {
   to: FormControl<string | null>,
 }
 
+export type SingleDateFilterForm = {
+  day: FormControl<string | null>,
+}
+
 export enum DateFilterFormRange  {
   DAY, WEEK, MONTH, YEAR
 }
@@ -34,6 +38,13 @@ export class DateFormHandler {
     return new FormGroup<DateFilterForm>({
       from: new FormControl<string | null>(dateAgo.toISOString().split('T')[0]),
       to: new FormControl<string | null>(today.toISOString().split('T')[0])
+    })
+  }
+
+  getSingleFilterForm() {
+    const today = new Date();
+    return new FormGroup<SingleDateFilterForm>({
+      day: new FormControl<string | null>(today.toISOString().split('T')[0])
     })
   }
 }

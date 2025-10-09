@@ -57,7 +57,9 @@ export class WeightCorrectnessChartComponent {
           backgroundColor: 'green',
           pointBackgroundColor: 'green',
           pointBorderColor: 'white',
-          tension: 0.3
+          tension: 0.3,
+          pointRadius: 0
+
         },
         {
           data: weightMax,
@@ -66,7 +68,8 @@ export class WeightCorrectnessChartComponent {
           backgroundColor: 'yellow',
           pointBackgroundColor: 'yellow',
           pointBorderColor: 'white',
-          tension: 0.3
+          tension: 0.3,
+          pointRadius: 0
         },
         {
           data: weightMin,
@@ -75,7 +78,9 @@ export class WeightCorrectnessChartComponent {
           backgroundColor: 'yellow',
           pointBackgroundColor: 'yellow',
           pointBorderColor: 'white',
-          tension: 0.3
+          tension: 0.3,
+          pointRadius: 0
+
         },
 
         {

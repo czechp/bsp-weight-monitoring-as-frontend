@@ -17,4 +17,7 @@ export class HistoricalMeasurementsPageComponent {
   constructor(private service: HistoricalMeasurementsStateService, ) {
   }
 
+  filterByDay() {
+    this.service.filterByDay();
+  }
 }

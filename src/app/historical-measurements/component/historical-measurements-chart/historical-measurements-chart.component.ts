@@ -23,12 +23,6 @@ export class HistoricalMeasurementsChartComponent {
   chartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
     maintainAspectRatio: false,
-    // hide point markers globally so lines appear continuous
-    // elements: {
-    //   point: {
-    //     radius: 0
-    //   }
-    // }
   };
 
   @Input() set measurements(items: Measurements[]) {
@@ -73,7 +67,7 @@ export class HistoricalMeasurementsChartComponent {
         },
         {
           data: this.maxValue,
-          label: 'Waga min.',
+          label: 'Waga max.',
           borderColor: 'yellow',
           backgroundColor: 'transparent',
           pointBackgroundColor: 'yellow',

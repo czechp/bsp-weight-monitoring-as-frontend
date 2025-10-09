@@ -3,6 +3,7 @@ import {ProductionLineHttpService} from "./production-line-http.service";
 import {BehaviorSubject, interval, Subscription} from "rxjs";
 import {ProductionLineModel} from "../model/production-line.model";
 import {Router} from "@angular/router";
+import {MeasurementHistoryNavigation} from "../component/production-line-tile/production-line-tile.component";
 
 @Injectable()
 export class ProductionLineListStateService implements OnDestroy{
@@ -29,5 +30,9 @@ export class ProductionLineListStateService implements OnDestroy{
 
   navigateToAlerts(productionLine: ProductionLineModel) {
     this.router.navigate(['/alerts'], { queryParams: { lineName: productionLine.name} });
+  }
+
+  navigateToHistory(measurementHistoryNavigation: MeasurementHistoryNavigation) {
+    this.router.navigate(['/historical-measurements', measurementHistoryNavigation.lineName, measurementHistoryNavigation.dosingNr]);
   }
 }

@@ -11,12 +11,11 @@ export class HistoricalMeasurementsHttpService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getHistoricalMeasurements(lineName: string, from: string, to: string) {
+  getHistoricalMeasurements(lineName: string, day: string) {
     return this.httpClient.get<HistoricalMeasurementModel[]>(`${BACKEND_URL}/historical-measurements`, {
       params: {
         lineName,
-        from,
-        to
+        day
       }
     });
   }

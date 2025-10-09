@@ -110,6 +110,7 @@
                           *ngFor="let measurement of productionLine.measurements"
                           [measurement]="measurement"
                           [product]="productionLine.product"
+                          (click)="navigateToHistory(productionLine.name, measurement.dosingNr)"
     />
   </div>
   <hr>

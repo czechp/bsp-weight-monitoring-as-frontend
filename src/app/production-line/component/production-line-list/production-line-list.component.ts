@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductionLineModel} from "../../model/production-line.model";
+import {MeasurementHistoryNavigation} from "../production-line-tile/production-line-tile.component";
 
 @Component({
   selector: 'app-production-line-list',
@@ -11,8 +12,14 @@ export class ProductionLineListComponent {
   productionLines!: ProductionLineModel[];
   @Output()
   wrongProductClick = new EventEmitter<ProductionLineModel>();
+  @Output()
+  navigateToHistoryClick = new EventEmitter<MeasurementHistoryNavigation>();
 
   wrongProductOnClick(productionLineModel: ProductionLineModel) {
     this.wrongProductClick.next(productionLineModel);
+  }
+
+  navigateToHistory(measurementHistoryNavigation: MeasurementHistoryNavigation) {
+    this.navigateToHistoryClick.emit(measurementHistoryNavigation);
   }
 }
