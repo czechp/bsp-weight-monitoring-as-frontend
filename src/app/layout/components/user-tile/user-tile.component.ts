@@ -13,6 +13,7 @@ export class UserTileComponent {
   tile: IconTile = {
     iconName: "user",
     title: "",
+    route: [],
     onClick: () => {
     }
   }

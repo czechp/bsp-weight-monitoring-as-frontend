@@ -1,5 +1,5 @@
 <div class="container">
   <ng-container *ngFor="let tile of iconTiles">
-    <app-top-bar-tile style="margin-right: 5rem" [tile]="tile"/>
+    <app-top-bar-tile [tile]="tile" [isActive]="isActive(tile)" />
   </ng-container>
 </div>

@@ -5,7 +5,6 @@ export type AlertModel = {
   version: number;
   lineName: string;
   averageWeight: number;
-  correctWeight: number;
   alertType: AlertType;
   createdAt: Date;
   assigned: boolean;

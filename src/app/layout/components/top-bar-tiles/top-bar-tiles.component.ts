@@ -6,6 +6,7 @@ export type IconTile = {
   iconName: IconName;
   title: string;
   onClick: () => void;
+  route: string[];
 }
 
 
@@ -17,14 +18,40 @@ export type IconTile = {
 
 export class TopBarTilesComponent {
   iconTiles: IconTile[] = [
-    {iconName: "scale-balanced", title: "Moduły wagowe", onClick: () => this.router.navigate(["production-lines"])},
-    {iconName: "table", title: "Raporty zmianowe", onClick: () => this.router.navigate(["reports"])},
-    {iconName: "check-to-slot", title: "Raporty BRC", onClick: () => this.router.navigate(["reports", {brc: true}])},
-    {iconName: "bell", title: "Alerty", onClick: () => this.router.navigate(["alerts"])},
-    {iconName: "gear", title: "Ustawienia", onClick: () => this.router.navigate(["settings", "statistics"])},
-
+    {
+      iconName: "scale-balanced",
+      title: "Moduły wagowe",
+      route: ["production-lines"],
+      onClick: () => this.router.navigate(["production-lines"])
+    },
+    {
+      iconName: "table",
+      title: "Raporty zmianowe",
+      route: ["reports", "report-details"],
+      onClick: () => this.router.navigate(["reports"])
+    },
+    {
+      iconName: "check-to-slot",
+      title: "Raporty BRC",
+      route: ["brc", "report-brc-details"],
+      onClick: () => this.router.navigate(["brc", {brc: true}])
+    },
+    {iconName: "bell", title: "Alerty", route: ["alerts"], onClick: () => this.router.navigate(["alerts"])},
+    {
+      iconName: "gear",
+      title: "Ustawienia",
+      route: ["settings", "statistics"],
+      onClick: () => this.router.navigate(["settings", "statistics"])
+    },
   ]
 
   constructor(private router: Router) {
+  }
+
+  isActive(tile: IconTile): boolean {
+    if (!tile.route || tile.route.length === 0) return false;
+    return tile.route
+      .filter(seg => typeof seg === 'string' && seg.length > 0)
+      .some(seg => this.router.url.includes('/' + seg));
   }
 }

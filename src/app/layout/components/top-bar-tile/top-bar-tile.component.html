@@ -1,4 +1,4 @@
-<div class="container" (click)="onClick()">
+<div class="container" (click)="onClick()" [class.active]="isActive">
   <fa-icon class="icon-el" [icon]="['fas', tile.iconName]" size="2x"/>
   {{ tile.title }}
 </div>

@@ -9,6 +9,8 @@ import {IconTile} from "../top-bar-tiles/top-bar-tiles.component";
 export class TopBarTileComponent {
   @Input()
   tile!: IconTile;
+  @Input()
+  isActive = false;
   @Output()
   clicked = new EventEmitter<IconTile>();
 

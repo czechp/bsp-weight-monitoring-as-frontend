@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10%;
 }
 
 .container:hover {
@@ -14,8 +15,11 @@
   border-radius: 10%;
 }
 
+.container.active {
+  background-color: $body-background;
+  color: #fff; // white text for contrast
+}
+
 .icon-el {
   margin-bottom: .5rem;
 }
-
-

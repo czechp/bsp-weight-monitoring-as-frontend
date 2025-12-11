@@ -152,6 +152,11 @@ const routes: Routes = [
       canActivate: [loginGuard]
     },
     {
+      path: "brc",
+      component: ReportListPageComponent,
+      canActivate: [loginGuard]
+    },
+    {
       path: "report-details/:id",
       component: ReportDetailsPageComponent,
       canActivate: [loginGuard]
