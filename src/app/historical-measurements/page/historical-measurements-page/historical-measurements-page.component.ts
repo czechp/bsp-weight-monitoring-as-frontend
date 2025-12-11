@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HistoricalMeasurementsStateService} from "../../service/historical-measurements-state.service";
+import HistoricalMeasurementsStateService from "../../service/historical-measurements-state.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

@@ -14,7 +14,7 @@ export type ReportModel = {
 }
 
 export enum ReportShiftModel {
-  I, II, III
+  I = "I", II = "II", III = "III"
 }
 
 export type ReportItemModel = {

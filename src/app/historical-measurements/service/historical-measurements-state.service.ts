@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HistoricalMeasurementsHttpService} from "./historical-measurements-http.service";
-import {DateFormHandler, SingleDateFilterForm} from "../../shared/model/date-filter.form";
 import {ActivatedRoute} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
+import {ReportShiftModel} from "../../report/model/report.model";
+import {currentTimeToShift} from "../../shared/service/utils";
 
 export type Measurements = {
   value: number;
@@ -13,22 +14,28 @@ export type Measurements = {
   createdAt: string;
 }
 
+export type HistoricalMeasurementsFilterForm = {
+  day: FormControl<string | null>;
+  shift: FormControl<ReportShiftModel | null>;
+}
 
 @Injectable()
-export class HistoricalMeasurementsStateService {
-  filterForm: FormGroup<SingleDateFilterForm> = new DateFormHandler().getSingleFilterForm();
+class HistoricalMeasurementsStateService {
+  filterForm: FormGroup<HistoricalMeasurementsFilterForm>;
   lineName = this.activatedRoute.snapshot.paramMap.get('lineName') as string;
   dosingDeviceId = Number(this.activatedRoute.snapshot.paramMap.get('dosingNr'));
   measurements: Measurements[] = [];
   measurements$ = new BehaviorSubject<Measurements[]>([]);
 
   constructor(private httpService: HistoricalMeasurementsHttpService, private activatedRoute: ActivatedRoute) {
+    this.filterForm = this.buildFilterForm();
     this.getMeasurements();
   }
 
   private getMeasurements() {
     const {day} = this.filterForm.value as { day: string };
-    this.httpService.getHistoricalMeasurements(this.lineName, day).subscribe(data => {
+    const shift = this.filterForm.value.shift as ReportShiftModel;
+    this.httpService.getHistoricalMeasurements(this.lineName, day, shift).subscribe(data => {
       this.measurements = data.map(m => ({
         value: m.measurements[this.dosingDeviceId - 1].value,
         referenceValue: m.product.productCorrectWeight,
@@ -43,4 +50,13 @@ export class HistoricalMeasurementsStateService {
   filterByDay() {
     this.getMeasurements();
   }
+
+  private buildFilterForm() :FormGroup<HistoricalMeasurementsFilterForm>{
+    return new FormGroup({
+      day: new FormControl<string | null>(new Date().toISOString().split('T')[0]),
+      shift: new FormControl<ReportShiftModel | null>(currentTimeToShift())
+    })
+  }
 }
+
+export default HistoricalMeasurementsStateService

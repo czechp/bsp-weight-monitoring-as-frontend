@@ -1,0 +1,17 @@
+<div class="container-center">
+  <form method="dialog" [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+    <div class="">
+      <label>Dzien</label>
+      <input type="date" formControlName="day">
+    </div>
+    <div class="select">
+      <label>Zmiana</label>
+      <select formControlName="shift">
+        <option value="I">I</option>
+        <option value="II">II</option>
+        <option value="III">III</option>
+      </select>
+    </div>
+    <button class="button-ok">Wyszukaj</button>
+  </form>
+</div>
