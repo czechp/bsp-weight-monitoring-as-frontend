@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {MeasurementsData} from "../../service/historical-measurements-state.service";
-import {ChartConfiguration, TooltipItem} from "chart.js";
+import {ChartConfiguration} from "chart.js";
 
 @Component({
   selector: 'app-historical-measurements-chart',
@@ -15,6 +15,7 @@ export class HistoricalMeasurementsChartComponent {
 
   dosingDevices: Array<{id: number, label: string, visible: boolean, color: string}> = [];
   private _selectedDosingDeviceId: number | null = null;
+  noDataAvailable = false;
 
   @Input() set selectedDosingDeviceId(value: number | null) {
     this._selectedDosingDeviceId = value;
@@ -25,15 +26,7 @@ export class HistoricalMeasurementsChartComponent {
     maintainAspectRatio: false,
     plugins: {
       tooltip: {
-        filter: (tooltipItem: TooltipItem<'line'>) => {
-          return tooltipItem.dataset.label?.startsWith('Lejek') ?? false;
-        },
-        callbacks: {
-          label: (tooltipItem: TooltipItem<'line'>) => {
-            const value = tooltipItem.parsed.y;
-            return `${tooltipItem.dataset.label}: ${value} g`;
-          }
-        }
+        enabled: false
       }
     },
     interaction: {
@@ -55,16 +48,26 @@ export class HistoricalMeasurementsChartComponent {
   private cachedData: MeasurementsData | null = null;
 
   @Input() set measurementsData(data: MeasurementsData) {
+    // Always cache the data, even if empty
+    this.cachedData = data;
+
     if (!data || !data.measurements || data.measurements.length === 0) {
+      this.noDataAvailable = true;
+      // Clear the chart when no data
+      this.chartData = {
+        labels: [],
+        datasets: []
+      };
       return;
     }
 
-    this.cachedData = data;
+    this.noDataAvailable = false;
+
 
     // Group measurements by dosing device to build checkbox list
     const dosingDeviceIds = [...new Set(data.measurements.map(m => m.dosingDeviceId))].sort((a, b) => a - b);
 
-    // Initialize or update dosing devices list
+    // Initialize dosing devices list only on first load
     if (this.dosingDevices.length === 0) {
       this.dosingDevices = dosingDeviceIds.map((id, index) => ({
         id: id,
@@ -73,6 +76,21 @@ export class HistoricalMeasurementsChartComponent {
         visible: this._selectedDosingDeviceId !== null ? id === this._selectedDosingDeviceId : true,
         color: this.colors[index % this.colors.length]
       }));
+    } else {
+      // On subsequent data updates (filtering), preserve checkbox states
+      // but update list if new dosing devices appeared
+      dosingDeviceIds.forEach((id) => {
+        const existingDevice = this.dosingDevices.find(d => d.id === id);
+        if (!existingDevice) {
+          const index = this.dosingDevices.length;
+          this.dosingDevices.push({
+            id: id,
+            label: `Lejek ${id}`,
+            visible: true,
+            color: this.colors[index % this.colors.length]
+          });
+        }
+      });
     }
 
     this.updateChart();

@@ -48,6 +48,19 @@
   }
 }
 
+.no-data-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #666;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 2px dashed #ccc;
+  min-height: 200px;
+}
+
 .chart {
   display: block;
   width: 100% !important;

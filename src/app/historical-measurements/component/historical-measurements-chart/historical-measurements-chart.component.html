@@ -12,6 +12,11 @@
       </label>
     </div>
   </div>
-  <canvas class="chart" baseChart [data]="chartData" type="line" [options]="chartOptions"></canvas>
+
+  <div *ngIf="noDataAvailable" class="no-data-message">
+    Brak danych dla wybranych parametrów
+  </div>
+
+  <canvas *ngIf="!noDataAvailable" class="chart" baseChart [data]="chartData" type="line" [options]="chartOptions"></canvas>
 
 </div>
