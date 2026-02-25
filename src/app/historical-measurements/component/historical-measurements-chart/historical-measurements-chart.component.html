@@ -1,4 +1,17 @@
 <div class="container">
+  <div class="controls">
+    <div class="dosing-devices-checkboxes">
+      <label *ngFor="let device of dosingDevices" class="checkbox-label"
+             [style.border]="'2px solid ' + device.color">
+        <input
+          type="checkbox"
+          [checked]="device.visible"
+          (change)="toggleDosingDevice(device.id)"
+        />
+        <span class="checkbox-text" [style.color]="device.color">{{ device.label }}</span>
+      </label>
+    </div>
+  </div>
   <canvas class="chart" baseChart [data]="chartData" type="line" [options]="chartOptions"></canvas>
 
 </div>

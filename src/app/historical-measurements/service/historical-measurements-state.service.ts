@@ -7,11 +7,19 @@ import {ReportShiftModel} from "../../report/model/report.model";
 import {currentTimeToShift} from "../../shared/service/utils";
 
 export type Measurements = {
+  dosingDeviceId: number;
   value: number;
   referenceValue: number;
   minValue: number;
   maxValue: number;
   createdAt: string;
+}
+
+export type MeasurementsData = {
+  measurements: Measurements[];
+  referenceValue: number;
+  minValue: number;
+  maxValue: number;
 }
 
 export type HistoricalMeasurementsFilterForm = {
@@ -23,11 +31,25 @@ export type HistoricalMeasurementsFilterForm = {
 class HistoricalMeasurementsStateService {
   filterForm: FormGroup<HistoricalMeasurementsFilterForm>;
   lineName = this.activatedRoute.snapshot.paramMap.get('lineName') as string;
-  dosingDeviceId = Number(this.activatedRoute.snapshot.paramMap.get('dosingNr'));
-  measurements: Measurements[] = [];
-  measurements$ = new BehaviorSubject<Measurements[]>([]);
+  selectedDosingDeviceId: number | null = null;
+  measurementsData: MeasurementsData = {
+    measurements: [],
+    referenceValue: 0,
+    minValue: 0,
+    maxValue: 0
+  };
+  measurements$ = new BehaviorSubject<MeasurementsData>({
+    measurements: [],
+    referenceValue: 0,
+    minValue: 0,
+    maxValue: 0
+  });
 
   constructor(private httpService: HistoricalMeasurementsHttpService, private activatedRoute: ActivatedRoute) {
+    const dosingNrParam = this.activatedRoute.snapshot.paramMap.get('dosingNr');
+    if (dosingNrParam) {
+      this.selectedDosingDeviceId = Number(dosingNrParam);
+    }
     this.filterForm = this.buildFilterForm();
     this.getMeasurements();
   }
@@ -36,14 +58,30 @@ class HistoricalMeasurementsStateService {
     const {day} = this.filterForm.value as { day: string };
     const shift = this.filterForm.value.shift as ReportShiftModel;
     this.httpService.getHistoricalMeasurements(this.lineName, day, shift).subscribe(data => {
-      this.measurements = data.map(m => ({
-        value: m.measurements[this.dosingDeviceId - 1].value,
-        referenceValue: m.product.productCorrectWeight,
-        minValue: m.product.productMinimumWeight,
-        maxValue: m.product.productMaximumWeight,
-        createdAt: m.createdAt
-      }));
-      this.measurements$.next(this.measurements);
+      const allMeasurements: Measurements[] = [];
+
+      // Flatten all measurements from all time points and all dosing devices
+      data.forEach(timePoint => {
+        timePoint.measurements.forEach(measurement => {
+          allMeasurements.push({
+            dosingDeviceId: measurement.dosingNr,
+            value: measurement.value,
+            referenceValue: timePoint.product.productCorrectWeight,
+            minValue: timePoint.product.productMinimumWeight,
+            maxValue: timePoint.product.productMaximumWeight,
+            createdAt: timePoint.createdAt
+          });
+        });
+      });
+
+      this.measurementsData = {
+        measurements: allMeasurements,
+        referenceValue: data[0]?.product.productCorrectWeight || 0,
+        minValue: data[0]?.product.productMinimumWeight || 0,
+        maxValue: data[0]?.product.productMaximumWeight || 0
+      };
+
+      this.measurements$.next(this.measurementsData);
     });
   }
 

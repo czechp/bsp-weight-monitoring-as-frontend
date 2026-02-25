@@ -175,6 +175,11 @@ const routes: Routes = [
       path: "historical-measurements/:lineName/:dosingNr",
       component: HistoricalMeasurementsPageComponent,
       canActivate: [loginGuard]
+    },
+    {
+      path: "historical-measurements/:lineName",
+      component: HistoricalMeasurementsPageComponent,
+      canActivate: [loginGuard]
     }
   ]
 ;

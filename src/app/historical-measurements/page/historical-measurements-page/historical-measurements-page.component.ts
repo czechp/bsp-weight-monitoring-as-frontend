@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import HistoricalMeasurementsStateService from "../../service/historical-measurements-state.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-historical-measurements-page',
@@ -10,9 +9,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class HistoricalMeasurementsPageComponent {
   lineName = this.service.lineName;
-  dosingDeviceId = this.service.dosingDeviceId;
   filterForm = this.service.filterForm;
   measurements$ = this.service.measurements$;
+  selectedDosingDeviceId = this.service.selectedDosingDeviceId;
 
   constructor(private service: HistoricalMeasurementsStateService, ) {
   }

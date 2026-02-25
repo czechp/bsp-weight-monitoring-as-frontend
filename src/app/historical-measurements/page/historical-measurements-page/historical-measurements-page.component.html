@@ -1,4 +1,6 @@
-<app-page [title]="'Dane historyczne - linia ' + lineName + ' lejek ' + dosingDeviceId   ">
+<app-page [title]="'Dane historyczne - linia ' + lineName">
   <app-historical-measurement-filter-form [filterForm]="filterForm"  (filter)="filterByDay()"/>
-  <app-historical-measurements-chart *ngIf="measurements$ | async as measurements" [measurements]="measurements"/>
+  <app-historical-measurements-chart *ngIf="measurements$ | async as measurements"
+                                     [measurementsData]="measurements"
+                                     [selectedDosingDeviceId]="selectedDosingDeviceId"/>
 </app-page>
