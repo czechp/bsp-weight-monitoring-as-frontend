@@ -32,7 +32,7 @@ export class TopBarTilesComponent {
     },
     {
       iconName: "check-to-slot",
-      title: "Raporty BRC",
+      title: "Raporty zmianowe",
       route: ["brc", "report-brc-details"],
       onClick: () => this.router.navigate(["brc", {brc: true}])
     },
