@@ -1,4 +1,4 @@
-<app-page title="Raporty zmianowe">
+<app-page>
   <app-date-filter-form [filterForm]="filterForm" (applyFilter)="applyFilter()" />
   <app-report-list *ngIf="reports$ | async as reports" [reports]="reports" (reportClick)="navigateToDetails($event)"/>
 </app-page>

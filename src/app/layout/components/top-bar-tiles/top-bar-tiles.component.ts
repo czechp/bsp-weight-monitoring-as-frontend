@@ -26,7 +26,7 @@ export class TopBarTilesComponent {
     },
     {
       iconName: "table",
-      title: "Raporty zmianowe",
+      title: "Pełne raporty zmianowe",
       route: ["reports", "report-details"],
       onClick: () => this.router.navigate(["reports"])
     },

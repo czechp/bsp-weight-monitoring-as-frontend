@@ -11,9 +11,9 @@ export class AlertTypePipe implements PipeTransform {
 
     switch (alertType) {
       case AlertType.NORMAL:
-        return 'Przekroczenie normy';
+        return 'Przekroczenie ustalonej gramatury';
       case AlertType.CRITICAL:
-        return 'Krytyczne przekroczenie normy';
+        return 'Krytyczne przekroczenie ustalonej gramatury';
     }
   }
 

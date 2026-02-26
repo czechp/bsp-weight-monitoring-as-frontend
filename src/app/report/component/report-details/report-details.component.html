@@ -66,10 +66,6 @@
   <div class="measurement-row">
     <div class="measurement-row-content">
       <div class="container-item">
-        <p class="key">Data pomiaru</p>
-        <p class="value" title="Data i godzina wykonania pomiaru">{{ reportItem.createdAt | localTime }}</p>
-      </div>
-      <div class="container-item">
         <p class="key">Średni pomiar godzinowy</p>
         <p class="value" title="Średnia waga z średnich pomiarów z ostatniej godziny">{{ reportItem.averageOfAverageLastHour | ZeroDigits }} g</p>
       </div>
@@ -86,6 +82,16 @@
     </div>
   </div>
   <div class="measurement-container">
+    <div class="measurement-time">
+      <div class="">
+        <p class="key">Zakres godzinowy</p>
+        <p class="value" title="Zakres godzinowy wykonania pomiaru">
+          {{ reportItem.createdAt | localTimeMinusHour }}
+          <br>---<br>
+          {{ reportItem.createdAt | localTime }}
+        </p>
+      </div>
+    </div>
     <app-measurement-tile style="width: 20rem" *ngFor="let measurement of reportItem.measurements"
                          [measurement]="measurement"
                          [product]="report.product"></app-measurement-tile>

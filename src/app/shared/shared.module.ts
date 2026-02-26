@@ -35,6 +35,7 @@ import { ProgressBarComponent } from './component/progress-bar/progress-bar.comp
 import { OneDigitsPipe } from './pipe/one-digits.pipe';
 import {DateFilterFormComponent} from "./component/date-filter-form/date-filter-form.component";
 import { SingleDateFilterComponent } from './component/single-date-filter/single-date-filter.component';
+import {LocalTimeMinusHourPipe} from "./pipe/local-time-minus-hour.pipe";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SingleDateFilterComponent } from './component/single-date-filter/single
     ProgressBarComponent,
     OneDigitsPipe,
     SingleDateFilterComponent,
+    LocalTimeMinusHourPipe
   ],
   imports: [
     CommonModule,
@@ -106,7 +108,8 @@ import { SingleDateFilterComponent } from './component/single-date-filter/single
     ProgressBarComponent,
     OneDigitsPipe,
     DateFilterFormComponent,
-    SingleDateFilterComponent
+    SingleDateFilterComponent,
+    LocalTimeMinusHourPipe
   ]
 })
 export class SharedModule {

@@ -59,26 +59,12 @@
   </div>
   <hr>
 
-  <p class="section-main-title">Produkcja</p>
+  <p class="section-main-title">Pomiary</p>
   <div style="width: 100%">
-    <div class="efficiency-item">Oczekiwana. <br>
-      <span title="Oczekiwana liczba wyprodukowanych produktów do tej pory">
-        {{ productionLine.efficiency.expectedProduction }}
-      </span> szt. <br>
-      <app-progress-bar [value]="productionLine.efficiency.expectedProductionPercent "/>
-    </div>
-    <div class="efficiency-item">Aktualna. <br>
-      <span title="Aktualna liczba wyprodukowanych produktów do tej pory">
-        {{ productionLine.efficiency.productCounter }}
-      </span> szt. <br>
-      <app-progress-bar [value]="productionLine.efficiency.productionProgressPercent"/>
-    </div>
+
+
     <div class="info-container-center">
-      <p>Norma na zmianę<br>
-        <span title="Oczekiwana liczba produktu wyprodukwoanego na zmianę na zmianę ">
-        {{ productionLine.efficiency.productsPerShift }}
-      </span> szt.
-        <br>
+
       <p>Licznik niepoprawnych pomiarów<br>
         <span title="Ilość produktu po za tolerancją">
         {{ productionLine.efficiency.wrongProductsCounter }} szt.
@@ -101,7 +87,7 @@
   <p class="section-main-title">Pomiary</p>
   <p class="section-title">Średnia</p>
   <p>
-    <span title="Średnia waga produktu z ostatnich pomiarów">
+    <span title="Średnia z aktualnych pomiarów z każdego lejka">
       {{ productionLine.averageMeasurement}}
     </span> g
   </p>

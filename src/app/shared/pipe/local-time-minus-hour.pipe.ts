@@ -1,22 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'localTime'
+  name: 'localTimeMinusHour'
 })
-export class LocalTimePipe implements PipeTransform {
+export class LocalTimeMinusHourPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     if (typeof value !== 'string') return null;
     const date = new Date(value);
     if (isNaN(date.getTime())) return null;
 
+    date.setHours(date.getHours() - 1);
+
     const pad = (n: number) => n.toString().padStart(2, '0');
     const hours = pad(date.getHours());
     const minutes = pad(date.getMinutes());
     const seconds = pad(date.getSeconds());
-    const day = pad(date.getDate());
-    const month = pad(date.getMonth() + 1);
-    const year = date.getFullYear();
 
     return `${hours}:${minutes}`;
   }
