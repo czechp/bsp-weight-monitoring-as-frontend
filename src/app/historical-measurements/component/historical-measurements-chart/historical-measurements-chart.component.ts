@@ -2,6 +2,24 @@ import {Component, Input} from '@angular/core';
 import {MeasurementsData} from "../../service/historical-measurements-state.service";
 import {ChartConfiguration} from "chart.js";
 
+export type ProductionLineMeasurements = {
+  productionLineId: number;
+  dosingDeviceMeasurements: DosingDeviceMeasurements[];
+};
+
+export type DosingDeviceMeasurements = {
+  dosingDeviceNr: number;
+  measurements: Measurement[];
+};
+
+export type Measurement = {
+  value: number;
+  correctWeight: number;
+  maximumWeight: number;
+  minimumWeight: number;
+  timestamp: string;
+};
+
 @Component({
   selector: 'app-historical-measurements-chart',
   templateUrl: './historical-measurements-chart.component.html',
@@ -19,6 +37,12 @@ export class HistoricalMeasurementsChartComponent {
 
   @Input() set selectedDosingDeviceId(value: number | null) {
     this._selectedDosingDeviceId = value;
+    this.dosingDevices.forEach((device) => {
+      device.visible = true;
+    });
+    if (this.cachedData) {
+      this.updateChart();
+    }
   }
 
   chartOptions: ChartConfiguration<'line'>['options'] = {
@@ -26,32 +50,76 @@ export class HistoricalMeasurementsChartComponent {
     maintainAspectRatio: false,
     plugins: {
       tooltip: {
-        enabled: false
+        enabled: true,
+        intersect: false,
+        mode: 'nearest',
+        filter: (item) => {
+          const label = item.dataset.label ?? '';
+          return !['Waga referencyjna', 'Waga min.', 'Waga max.'].includes(label);
+        },
+        callbacks: {
+          title: (items) => items[0]?.dataset?.label ?? 'Pomiary',
+          label: (context) => {
+            const timestamp = context.label ?? '';
+            const value = context.parsed.y;
+            return `Data: ${timestamp} | Wartość: ${value} g`;
+          }
+        }
       }
     },
     interaction: {
       mode: 'nearest',
-      intersect: true
+      axis: 'x',
+      intersect: false
     },
     hover: {
       mode: 'nearest',
-      intersect: true
+      axis: 'x',
+      intersect: false
     }
   };
 
   // Colors for different dosing devices
-  private colors = [
-    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
-    '#FF6384', '#C9CBCF', '#4BC0C0', '#FF6384', '#36A2EB', '#FFCE56'
+  private readonly colorPalette = [
+    '#FF5C8A', '#00B8D9', '#7C4DFF', '#F9A826', '#00C853', '#FF6F61',
+    '#1E88E5', '#FB8C00', '#26A69A', '#8E24AA', '#43A047', '#D81B60',
+    '#3949AB', '#FDD835', '#00897B', '#E53935', '#6D4C41', '#039BE5',
+    '#7CB342', '#EF5350', '#5E35B1', '#FFB300', '#00ACC1', '#7E57C2',
+    '#C0CA33', '#00A152', '#FB6D00', '#5C6BC0', '#E91E63', '#2E7D32'
   ];
+
+  private getColor(index: number): string {
+    return this.colorPalette[index % this.colorPalette.length];
+  }
+
+  private formatTimestamp(value: string): string {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return value;
+    }
+
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${hours}${minutes} ${day}:${month}:${year}`;
+  }
 
   private cachedData: MeasurementsData | null = null;
 
-  @Input() set measurementsData(data: MeasurementsData) {
-    // Always cache the data, even if empty
-    this.cachedData = data;
+  @Input() set measurementsData(data: ProductionLineMeasurements | MeasurementsData | null) {
+    this.productionLineMeasurements = data;
+  }
 
-    if (!data || !data.measurements || data.measurements.length === 0) {
+  @Input() set productionLineMeasurements(data: ProductionLineMeasurements | MeasurementsData | null) {
+    const normalizedData = this.toMeasurementsData(data);
+
+    // Always cache the data, even if empty
+    this.cachedData = normalizedData;
+
+    if (!normalizedData || !normalizedData.measurements || normalizedData.measurements.length === 0) {
       this.noDataAvailable = true;
       // Clear the chart when no data
       this.chartData = {
@@ -63,18 +131,17 @@ export class HistoricalMeasurementsChartComponent {
 
     this.noDataAvailable = false;
 
-
     // Group measurements by dosing device to build checkbox list
-    const dosingDeviceIds = [...new Set(data.measurements.map(m => m.dosingDeviceId))].sort((a, b) => a - b);
+    const dosingDeviceIds = [...new Set(normalizedData.measurements.map(m => m.dosingDeviceId))].sort((a, b) => a - b);
 
     // Initialize dosing devices list only on first load
     if (this.dosingDevices.length === 0) {
       this.dosingDevices = dosingDeviceIds.map((id, index) => ({
         id: id,
         label: `Lejek ${id}`,
-        // If selectedDosingDeviceId is provided, only show that device, otherwise show all
-        visible: this._selectedDosingDeviceId !== null ? id === this._selectedDosingDeviceId : true,
-        color: this.colors[index % this.colors.length]
+        // Show all dosing devices by default
+        visible: true,
+        color: this.getColor(index)
       }));
     } else {
       // On subsequent data updates (filtering), preserve checkbox states
@@ -87,13 +154,49 @@ export class HistoricalMeasurementsChartComponent {
             id: id,
             label: `Lejek ${id}`,
             visible: true,
-            color: this.colors[index % this.colors.length]
+            color: this.getColor(index)
           });
         }
       });
     }
 
     this.updateChart();
+  }
+
+  private toMeasurementsData(data: ProductionLineMeasurements | MeasurementsData | null): MeasurementsData | null {
+    if (!data) {
+      return null;
+    }
+
+    if ('measurements' in data && 'referenceValue' in data) {
+      return data;
+    }
+
+    if (!('dosingDeviceMeasurements' in data) || !data.dosingDeviceMeasurements || data.dosingDeviceMeasurements.length === 0) {
+      return null;
+    }
+
+    const measurements = data.dosingDeviceMeasurements.flatMap((device) =>
+      device.measurements.map((measurement) => ({
+        dosingDeviceId: device.dosingDeviceNr,
+        value: measurement.value,
+        referenceValue: measurement.correctWeight,
+        minValue: measurement.minimumWeight,
+        maxValue: measurement.maximumWeight,
+        createdAt: measurement.timestamp || new Date().toISOString()
+      }))
+    );
+
+    const referenceValues = measurements.map(m => m.referenceValue);
+    const minValues = measurements.map(m => m.minValue);
+    const maxValues = measurements.map(m => m.maxValue);
+
+    return {
+      measurements,
+      referenceValue: referenceValues[0] ?? 0,
+      minValue: minValues.length ? Math.min(...minValues) : 0,
+      maxValue: maxValues.length ? Math.max(...maxValues) : 0
+    };
   }
 
   toggleDosingDevice(deviceId: number): void {
@@ -113,7 +216,7 @@ export class HistoricalMeasurementsChartComponent {
 
     // Group measurements by timestamp to get labels
     const timePoints = [...new Set(data.measurements.map(m => m.createdAt))].sort();
-    const labels = timePoints.map(time => time.split('T')[1]?.slice(0, 5) || '');
+    const labels = timePoints.map(time => this.formatTimestamp(time));
 
     // Create datasets for each dosing device
     const datasets: ChartConfiguration<'line'>['data']['datasets'] = [];
@@ -140,11 +243,12 @@ export class HistoricalMeasurementsChartComponent {
         pointBorderColor: 'white',
         tension: 0.3,
         showLine: true,
+        spanGaps: true,
         borderWidth: 2,
         fill: false,
         pointRadius: 4,
         pointHoverRadius: 7,
-        pointHitRadius: 10
+        pointHitRadius: 16
       });
     });
 

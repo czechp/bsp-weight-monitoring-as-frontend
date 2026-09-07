@@ -3,6 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {HistoricalMeasurementModel} from "../model/historical-measurement.model";
 import {BACKEND_URL} from "../../shared/configuration/URL";
 import {ReportShiftModel} from "../../report/model/report.model";
+import {
+  ProductionLineMeasurements
+} from "../component/historical-measurements-chart/historical-measurements-chart.component";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +23,9 @@ export class HistoricalMeasurementsHttpService {
         shift
       }
     });
+  }
+
+  getHistoricalMeasurementsForReport(reportId: number){
+    return this.httpClient.get<ProductionLineMeasurements>(`${BACKEND_URL}/historical-measurements/report/${reportId}`);
   }
 }

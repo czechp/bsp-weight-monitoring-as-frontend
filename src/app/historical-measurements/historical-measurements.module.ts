@@ -9,15 +9,18 @@ import { HistoricalMeasurementFilterFormComponent } from './component/historical
 
 
 @NgModule({
-  declarations: [
-    HistoricalMeasurementsPageComponent,
-    HistoricalMeasurementsChartComponent,
-    HistoricalMeasurementFilterFormComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    NgChartsModule
-  ]
+    declarations: [
+        HistoricalMeasurementsPageComponent,
+        HistoricalMeasurementsChartComponent,
+        HistoricalMeasurementFilterFormComponent
+    ],
+    exports: [
+        HistoricalMeasurementsChartComponent
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        NgChartsModule
+    ]
 })
 export class HistoricalMeasurementsModule { }
