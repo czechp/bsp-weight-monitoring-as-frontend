@@ -23,15 +23,6 @@ export type ParaffinConsumptionModel = {
   paraffinDeviationPercent: number;
 };
 
-export type EfficiencyModel = {
-  productCounter: number;
-  expectedProduction: number;
-  productsPerShift: number;
-  expectedProductionPercent: number;
-  productionProgressPercent: number;
-  wrongProductsCounter: number;
-  wrongProductsCounterPercent: number;
-}
 
 export type ProductionLineModel = {
   id: number;
@@ -45,9 +36,13 @@ export type ProductionLineModel = {
   paraffinConsumption: ParaffinConsumptionModel;
   communicationError: boolean;
   lastUpdate: string;
-  efficiency: EfficiencyModel;
-  averageFromMeasurementsAverage: number;
-  averageFromAverageLastHour: number;
+  productionCounters: {
+    totalMeasurements: number;
+    correctMeasurements: number;
+    incorrectMeasurements: number;
+    correctPercentage: number;
+    incorrectPercentage: number;
+  }
 };
 
 

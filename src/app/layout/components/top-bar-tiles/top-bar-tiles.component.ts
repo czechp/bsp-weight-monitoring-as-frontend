@@ -30,12 +30,6 @@ export class TopBarTilesComponent {
       route: ["reports", "report-details"],
       onClick: () => this.router.navigate(["reports"])
     },
-    {
-      iconName: "check-to-slot",
-      title: "Raporty zmianowe",
-      route: ["brc", "report-brc-details"],
-      onClick: () => this.router.navigate(["brc", {brc: true}])
-    },
     {iconName: "bell", title: "Alerty", route: ["alerts"], onClick: () => this.router.navigate(["alerts"])},
     {
       iconName: "gear",

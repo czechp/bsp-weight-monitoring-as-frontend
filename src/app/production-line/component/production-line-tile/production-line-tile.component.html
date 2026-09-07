@@ -48,12 +48,12 @@
     </p>
     <p>Średnica <br>
       <span title="Średnica kubka produktu">
-        {{ productionLine.product.cupDiameter}}
+        {{ productionLine.product.cupDiameter }}
       </span> mm
     </p>
     <p>Waga <br>
       <span title="Waga pustego kubka produktu">
-        {{ productionLine.product.cupWeight}}
+        {{ productionLine.product.cupWeight }}
       </span> g
     </p>
   </div>
@@ -67,7 +67,7 @@
 
       <p>Licznik niepoprawnych pomiarów<br>
         <span title="Ilość produktu po za tolerancją">
-        {{ productionLine.efficiency.wrongProductsCounter }} szt.
+        {{ productionLine.productionCounters.incorrectMeasurements }} szt.
       </span>
         <br>
       </p>
@@ -75,8 +75,9 @@
     <div class="info-container-center">
       <p> Procentowa ilość poprawnych do niepoprawnych pomiarów [%]<br> <br>
         <span class="" title="Procentowy udział poprawnych do niepoprawnych produktów">
-        <span class="percent-ok">{{100 - productionLine.efficiency.wrongProductsCounterPercent}} % </span>   -------------------------- <span (click)="wrongProductOnClick()"
-                                                                                                                                              class="percent-nok wrong-product-link">{{productionLine.efficiency.wrongProductsCounterPercent}} %</span>
+        <span class="percent-ok">{{ (100 - productionLine.productionCounters.incorrectPercentage).toFixed(2) }} % </span>   -------------------------- <span
+          (click)="wrongProductOnClick()"
+          class="percent-nok wrong-product-link">{{ (productionLine.productionCounters.incorrectPercentage).toFixed(2) }} %</span>
       </span>
         <br>
       </p>
@@ -88,7 +89,7 @@
   <p class="section-title">Średnia</p>
   <p>
     <span title="Średnia z aktualnych pomiarów z każdego lejka">
-      {{ productionLine.averageMeasurement}}
+      {{ productionLine.averageMeasurement }}
     </span> g
   </p>
   <div class="measurement-container">
@@ -105,18 +106,18 @@
   <div class="info-container">
     <p>Zużycie parafiny<br><br> <br>
       <span title="Rzeczywiste zużycie parafiny na tej zmianie">
-        {{ (productionLine.paraffinConsumption.paraffinRealConsumption) }}
+        {{ (productionLine.paraffinConsumption.paraffinRealConsumption / 1000).toFixed(2) }}
       </span> kg
     </p>
     <p>Zużycie parafiny
       (oczekiwane)<br><br>
       <span title="Oczekiwane zużycie parafiny na tej zmianie">
-        {{ (productionLine.paraffinConsumption.paraffinExpectedConsumption) }}
+        {{ (productionLine.paraffinConsumption.paraffinExpectedConsumption / 1000).toFixed(2) }}
       </span> kg
     </p>
     <p>Zużycie parafiny (odchyłka)<br><br>
       <span title="Różnica między rzeczywistym a oczekiwanym zużyciem parafiny na tej zmianie">
-        {{ (productionLine.paraffinConsumption.paraffinDeviation ) }}
+        {{ (productionLine.paraffinConsumption.paraffinDeviation / 1000).toFixed(2) }}
       </span> kg
       <br>
       <span title="Procentowa odchyłka zużycia parafiny na tej zmianie">

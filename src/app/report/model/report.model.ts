@@ -1,4 +1,4 @@
-import {EfficiencyModel, MeasurementModel, ProductModel} from "../../production-line/model/production-line.model";
+import {MeasurementModel, ProductModel} from "../../production-line/model/production-line.model";
 import {AlertModel} from "./alerts.model";
 
 export type ReportModel = {
@@ -24,7 +24,6 @@ export type ReportItemModel = {
   createdAt: string;
   weightCorrect: boolean;
   weightDeviation: number;
-  efficiency: EfficiencyModel;
   measurements: MeasurementModel[];
   alerts: AlertModel[];
   measurementsAverageOfAverages: number;
