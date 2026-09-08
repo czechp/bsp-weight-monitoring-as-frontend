@@ -30,13 +30,24 @@ export class TopBarTilesComponent {
       route: ["reports", "report-details"],
       onClick: () => this.router.navigate(["reports"])
     },
-    {iconName: "bell", title: "Alerty", route: ["alerts"], onClick: () => this.router.navigate(["alerts"])},
+    {
+      iconName: "chart-simple",
+      title: "Pomiary",
+      route: ["historical-measurements"],
+      onClick: () => this.router.navigate(["historical-measurements"])
+    },
+    {
+      iconName: "bell",
+      title: "Alerty",
+      route: ["alerts"],
+      onClick: () => this.router.navigate(["alerts"])},
     {
       iconName: "gear",
       title: "Ustawienia",
       route: ["settings", "statistics"],
       onClick: () => this.router.navigate(["settings", "statistics"])
     },
+
   ]
 
   constructor(private router: Router) {

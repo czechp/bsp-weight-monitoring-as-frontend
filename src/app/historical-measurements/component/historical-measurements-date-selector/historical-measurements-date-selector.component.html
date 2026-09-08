@@ -1,0 +1,33 @@
+<div class="date-selector">
+  <div class="date-selector__controls" [formGroup]="dateSelectorForm">
+    <div class="date-selector__group">
+      <div class="date-selector__field">
+        <input id="from-date" type="date" formControlName="fromDate" />
+        <label for="from-date" class="date-selector__label">Od</label>
+      </div>
+
+      <div class="date-selector__field">
+        <select id="from-time" formControlName="fromTime" (change)="onFromTimeChange($any($event.target).value)">
+          <option *ngFor="let time of fromTimeOptions" [value]="time">{{ time }}</option>
+        </select>
+        <label for="from-time" class="date-selector__label">Godzina</label>
+      </div>
+    </div>
+
+    <div class="date-selector__group">
+      <div class="date-selector__field">
+        <input id="to-date" type="date" formControlName="toDate" />
+        <label for="to-date" class="date-selector__label">Do</label>
+      </div>
+
+      <div class="date-selector__field">
+        <select id="to-time" formControlName="toTime" (change)="onToTimeChange($any($event.target).value)">
+          <option *ngFor="let time of toTimeOptions" [value]="time">{{ time }}</option>
+        </select>
+        <label for="to-time" class="date-selector__label">Godzina</label>
+      </div>
+    </div>
+
+    <button type="button" class="date-selector__button" (click)="confirmSelection()">Wybierz</button>
+  </div>
+</div>
