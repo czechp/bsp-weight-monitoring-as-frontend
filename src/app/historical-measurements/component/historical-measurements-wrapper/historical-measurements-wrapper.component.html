@@ -1,0 +1,2 @@
+<app-historical-measurements-date-selector (dateRangeChanged)="getMeasurements($event)" />
+<app-historical-measurements-chart *ngIf="measurements$ | async as measurements"  [productionLineMeasurements]="measurements" />

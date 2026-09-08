@@ -1,3 +1,9 @@
 <app-page>
-  <app-historical-measurements-date-selector (dateRangeChanged)="applyFilter($event)"/>
+  <ng-container *ngIf="productionLines$ | async as lines">
+    <ng-container *ngFor="let item of lines">
+      <h1>{{item.name}}</h1>
+      <app-historical-measurements-wrapper [productionLineId]="item.id" />
+    </ng-container>
+
+  </ng-container>
 </app-page>

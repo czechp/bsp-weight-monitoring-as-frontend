@@ -30,6 +30,7 @@ export class HistoricalMeasurementsDateSelectorComponent implements OnInit, OnCh
 
   ngOnInit(): void {
     this.setCurrentDefaultRange();
+    this.emitCurrentSelection();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -39,13 +40,19 @@ export class HistoricalMeasurementsDateSelectorComponent implements OnInit, OnCh
 
     if (this.initialDateRange) {
       this.applyInitialDateRange();
+      this.emitCurrentSelection();
       return;
     }
 
     this.setCurrentDefaultRange();
+    this.emitCurrentSelection();
   }
 
   public confirmSelection(): void {
+    this.emitCurrentSelection();
+  }
+
+  private emitCurrentSelection(): void {
     const value = this.dateSelectorForm.getRawValue();
     const selectedRange: DateFilterRange = {
       from: this.buildDateTimeString(value.fromDate, value.fromTime, 0, 0),
@@ -78,13 +85,46 @@ export class HistoricalMeasurementsDateSelectorComponent implements OnInit, OnCh
 
   private setCurrentDefaultRange(): void {
     const now = new Date();
+    const defaultFrom = this.getDefaultFromRange(now);
+    const defaultTo = this.getDefaultToRange(now);
 
     this.dateSelectorForm.patchValue({
-      fromDate: this.toDateInputValue(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)),
-      fromTime: '00:00',
-      toDate: this.toDateInputValue(now),
-      toTime: this.getCurrentHourTime(now)
+      fromDate: this.toDateInputValue(defaultFrom.date),
+      fromTime: defaultFrom.time,
+      toDate: this.toDateInputValue(defaultTo.date),
+      toTime: defaultTo.time
     });
+  }
+
+  private getDefaultFromRange(now: Date): { date: Date; time: string } {
+    const hour = now.getHours();
+
+    if (hour >= 7 && hour < 15) {
+      return { date: new Date(now), time: '07:00' };
+    }
+
+    if (hour >= 15 && hour < 23) {
+      return { date: new Date(now), time: '15:00' };
+    }
+
+    if (hour >= 0 && hour < 7) {
+      const previousDay = new Date(now);
+      previousDay.setDate(previousDay.getDate() - 1);
+      return { date: previousDay, time: '23:00' };
+    }
+
+    return { date: new Date(now), time: '23:00' };
+  }
+
+  private getDefaultToRange(now: Date): { date: Date; time: string } {
+    const nextHourTime = this.getCurrentHourTime(now);
+    const toDate = new Date(now);
+
+    if (nextHourTime === '00:00') {
+      toDate.setDate(toDate.getDate() + 1);
+    }
+
+    return { date: toDate, time: nextHourTime };
   }
 
   private parseDateTimeValue(value: string | undefined, fallback: Date): { date: Date; microseconds: number } {
