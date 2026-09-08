@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductionLineModel} from "../../model/production-line.model";
 
 export type MeasurementHistoryNavigation = {
+  productionLineId: number;
   lineName: string;
   dosingNr: number;
 };
@@ -21,6 +22,6 @@ export class ProductionLineTileComponent {
   }
 
   navigateToHistory(name: string, dosingNr: number) {
-    this.navigateToHistoryClick.emit({lineName: name, dosingNr: dosingNr});
+    this.navigateToHistoryClick.emit({productionLineId: this.productionLine.id, lineName: name, dosingNr: dosingNr});
   }
 }

@@ -33,6 +33,6 @@ export class ProductionLineListStateService implements OnDestroy{
   }
 
   navigateToHistory(measurementHistoryNavigation: MeasurementHistoryNavigation) {
-    this.router.navigate(['/historical-measurements', measurementHistoryNavigation.lineName, measurementHistoryNavigation.dosingNr]);
+    this.router.navigate(['/historical-measurements', measurementHistoryNavigation.productionLineId]);
   }
 }

@@ -62,6 +62,9 @@ import {ReportBrcDetailsPageComponent} from "./report/page/report-brc-details-pa
 import {
   HistoricalMeasurementsLinePageComponent
 } from "./historical-measurements/page/historical-measurements-line-page/historical-measurements-line-page.component";
+import {
+  HistoricalMeasurementSinglePageComponent
+} from "./historical-measurements/page/historical-measurement-single-page/historical-measurement-single-page.component";
 
 
 const routes: Routes = [
@@ -170,6 +173,11 @@ const routes: Routes = [
   {
     path: "historical-measurements",
     component: HistoricalMeasurementsLinePageComponent,
+    canActivate: [loginGuard]
+  },
+  {
+    path: "historical-measurements/:id",
+    component: HistoricalMeasurementSinglePageComponent,
     canActivate: [loginGuard]
   }
   ]

@@ -6,6 +6,7 @@ import {NgChartsModule} from "ng2-charts";
 import { HistoricalMeasurementsLinePageComponent } from './page/historical-measurements-line-page/historical-measurements-line-page.component';
 import { HistoricalMeasurementsDateSelectorComponent } from './component/historical-measurements-date-selector/historical-measurements-date-selector.component';
 import { HistoricalMeasurementsWrapperComponent } from './component/historical-measurements-wrapper/historical-measurements-wrapper.component';
+import { HistoricalMeasurementSinglePageComponent } from './page/historical-measurement-single-page/historical-measurement-single-page.component';
 
 
 
@@ -14,7 +15,8 @@ import { HistoricalMeasurementsWrapperComponent } from './component/historical-m
         HistoricalMeasurementsChartComponent,
         HistoricalMeasurementsLinePageComponent,
         HistoricalMeasurementsDateSelectorComponent,
-        HistoricalMeasurementsWrapperComponent
+        HistoricalMeasurementsWrapperComponent,
+        HistoricalMeasurementSinglePageComponent
     ],
     exports: [
         HistoricalMeasurementsChartComponent
