@@ -1,1 +1,9 @@
-<p>measurements-sample-chart works!</p>
+<div class="container">
+
+  <div *ngIf="noDataAvailable" class="no-data-message">
+    Brak danych dla wybranych parametrów
+  </div>
+
+  <canvas *ngIf="!noDataAvailable" class="chart" baseChart [data]="chartData" type="line" [options]="chartOptions"></canvas>
+
+</div>
