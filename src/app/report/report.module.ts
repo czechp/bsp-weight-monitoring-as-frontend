@@ -16,6 +16,7 @@ import {AlertFilterFormComponent} from './component/alert-filter-form/alert-filt
 import {ReportBrcDetailsPageComponent} from './page/report-brc-details-page/report-brc-details-page.component';
 import { ReportBrcDetailsComponent } from './component/report-brc-details/report-brc-details.component';
 import {HistoricalMeasurementsModule} from "../historical-measurements/historical-measurements.module";
+import {MeasurementsSampleModule} from "../measurements-sample/measurements-sample.module";
 
 
 @NgModule({
@@ -35,9 +36,9 @@ import {HistoricalMeasurementsModule} from "../historical-measurements/historica
   ],
   exports: [
   ],
-  imports: [
-    CommonModule, SharedModule, ProductionLineModule, NgChartsModule, HistoricalMeasurementsModule
-  ]
+    imports: [
+        CommonModule, SharedModule, ProductionLineModule, NgChartsModule, HistoricalMeasurementsModule, MeasurementsSampleModule
+    ]
 })
 export class ReportModule {
 }

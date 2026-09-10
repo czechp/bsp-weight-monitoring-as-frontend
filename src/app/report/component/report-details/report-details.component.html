@@ -58,7 +58,10 @@
 </div>
 <hr>
 <app-weight-correctness-chart [product]="report.product"  [reportItems]="report.reportItems" />
+<h1>Pomiary</h1>
 <app-historical-measurements-chart *ngIf="measurements$ | async as productionMeasurements" [productionLineMeasurements]="productionMeasurements" />
+<h1>Kalibracja</h1>
+<app-measurements-sample-chart *ngIf="measurementsSamples$ |  async as measurementsSamples" [measurementSamples]="measurementsSamples" />
 <hr>
 <div class="" *ngFor="let reportItem of report.reportItems">
   <h2>Pomiary wagi</h2>
