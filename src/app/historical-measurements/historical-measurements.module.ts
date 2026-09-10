@@ -7,6 +7,7 @@ import { HistoricalMeasurementsLinePageComponent } from './page/historical-measu
 import { HistoricalMeasurementsDateSelectorComponent } from './component/historical-measurements-date-selector/historical-measurements-date-selector.component';
 import { HistoricalMeasurementsWrapperComponent } from './component/historical-measurements-wrapper/historical-measurements-wrapper.component';
 import { HistoricalMeasurementSinglePageComponent } from './page/historical-measurement-single-page/historical-measurement-single-page.component';
+import {MeasurementsSampleModule} from "../measurements-sample/measurements-sample.module";
 
 
 
@@ -24,7 +25,8 @@ import { HistoricalMeasurementSinglePageComponent } from './page/historical-meas
     imports: [
         CommonModule,
         SharedModule,
-        NgChartsModule
+        NgChartsModule,
+        MeasurementsSampleModule
     ]
 })
 export class HistoricalMeasurementsModule { }

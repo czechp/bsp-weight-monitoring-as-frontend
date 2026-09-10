@@ -6,6 +6,10 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject} from "rxjs";
 import {ProductionLineMeasurements} from "../historical-measurements-chart/historical-measurements-chart.component";
 import {BACKEND_URL} from "../../../shared/configuration/URL";
+import {
+  MeasurementsSampleModel
+} from "../../../measurements-sample/component/measurements-sample-chart/measurements-sample-chart.component";
+import {MeasurementsSampleHttpService} from "../../../measurements-sample/service/measurements-sample-http.service";
 
 @Component({
   selector: 'app-historical-measurements-wrapper',
@@ -17,8 +21,9 @@ export class HistoricalMeasurementsWrapperComponent {
   productionLineId!: number;
 
   measurements$ = new BehaviorSubject<ProductionLineMeasurements | null>(null);
+  measurementsSample$ = new BehaviorSubject<MeasurementsSampleModel[] | null>(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private sampleHttp: MeasurementsSampleHttpService) {
   }
 
   protected getMeasurements(dateRange: DateFilterRange) {
@@ -31,6 +36,11 @@ export class HistoricalMeasurementsWrapperComponent {
     })
       .subscribe((data) => {
         this.measurements$.next(data);
-      })
+      });
+
+    this.sampleHttp.getMeasurementsSample(this.productionLineId, dateRange.from, dateRange.to)
+      .subscribe((data) => {
+        this.measurementsSample$.next(data);
+      });
   }
 }

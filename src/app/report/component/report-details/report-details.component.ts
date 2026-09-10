@@ -34,7 +34,7 @@ export class ReportDetailsComponent {
       this.measurements$.next(measurements);
     });
 
-    this.measurementsSampleHttp.getSamplesFroReport(this.report.id).subscribe(samples => {
+    this.measurementsSampleHttp.getSamplesForReport(this.report.id).subscribe(samples => {
       this.measurementsSamples$.next(samples);
     });
   }
