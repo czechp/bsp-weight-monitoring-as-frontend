@@ -8,6 +8,7 @@ import { HistoricalMeasurementsDateSelectorComponent } from './component/histori
 import { HistoricalMeasurementsWrapperComponent } from './component/historical-measurements-wrapper/historical-measurements-wrapper.component';
 import { HistoricalMeasurementSinglePageComponent } from './page/historical-measurement-single-page/historical-measurement-single-page.component';
 import {MeasurementsSampleModule} from "../measurements-sample/measurements-sample.module";
+import {ProductionLineStatusModule} from "../production-line-status/production-line-status.module";
 
 
 
@@ -26,7 +27,8 @@ import {MeasurementsSampleModule} from "../measurements-sample/measurements-samp
         CommonModule,
         SharedModule,
         NgChartsModule,
-        MeasurementsSampleModule
+        MeasurementsSampleModule,
+        ProductionLineStatusModule
     ]
 })
 export class HistoricalMeasurementsModule { }

@@ -10,6 +10,12 @@ import {
   MeasurementsSampleModel
 } from "../../../measurements-sample/component/measurements-sample-chart/measurements-sample-chart.component";
 import {MeasurementsSampleHttpService} from "../../../measurements-sample/service/measurements-sample-http.service";
+import {
+  ProductionLineStatusModel
+} from "../../../production-line-status/component/production-line-status-chart/production-line-status-chart.component";
+import {
+  ProductionLineStatusHttpService
+} from "../../../production-line-status/service/production-line-status-http.service";
 
 @Component({
   selector: 'app-historical-measurements-wrapper',
@@ -22,8 +28,9 @@ export class HistoricalMeasurementsWrapperComponent {
 
   measurements$ = new BehaviorSubject<ProductionLineMeasurements | null>(null);
   measurementsSample$ = new BehaviorSubject<MeasurementsSampleModel[] | null>(null);
+  productionLineStatuses$ = new BehaviorSubject<ProductionLineStatusModel[] | null>(null);
 
-  constructor(private http: HttpClient, private sampleHttp: MeasurementsSampleHttpService) {
+  constructor(private http: HttpClient, private sampleHttp: MeasurementsSampleHttpService, private statusHttp: ProductionLineStatusHttpService) {
   }
 
   protected getMeasurements(dateRange: DateFilterRange) {
@@ -41,6 +48,11 @@ export class HistoricalMeasurementsWrapperComponent {
     this.sampleHttp.getMeasurementsSample(this.productionLineId, dateRange.from, dateRange.to)
       .subscribe((data) => {
         this.measurementsSample$.next(data);
+      });
+
+    this.statusHttp.getProductionLineStatuses(this.productionLineId, dateRange.from, dateRange.to)
+      .subscribe((data) => {
+        this.productionLineStatuses$.next(data);
       });
   }
 }

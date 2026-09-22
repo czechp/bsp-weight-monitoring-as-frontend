@@ -62,6 +62,9 @@
 <app-historical-measurements-chart *ngIf="measurements$ | async as productionMeasurements" [productionLineMeasurements]="productionMeasurements" />
 <h1>Kalibracja</h1>
 <app-measurements-sample-chart *ngIf="measurementsSamples$ |  async as measurementsSamples" [measurementSamples]="measurementsSamples" />
+<h1>Praca modułu wagowego</h1>
+<app-production-line-status-chart *ngIf="productionLineStatuses$ | async as statuses" [productionLineStatuses]="statuses" />
+
 <hr>
 <div class="" *ngFor="let reportItem of report.reportItems">
   <h2>Pomiary wagi</h2>

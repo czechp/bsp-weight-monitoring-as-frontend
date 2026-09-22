@@ -3,3 +3,5 @@
 <app-historical-measurements-chart *ngIf="measurements$ | async as measurements"  [productionLineMeasurements]="measurements" />
 <h1>Kalibracje</h1>
 <app-measurements-sample-chart *ngIf="measurementsSample$ | async as measurementsSample" [measurementSamples]="measurementsSample" />
+<h1>Praca modułu wagowego</h1>
+<app-production-line-status-chart *ngIf="productionLineStatuses$ | async as statuses" [productionLineStatuses]="statuses" />

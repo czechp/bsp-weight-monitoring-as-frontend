@@ -17,6 +17,7 @@ import {ReportBrcDetailsPageComponent} from './page/report-brc-details-page/repo
 import { ReportBrcDetailsComponent } from './component/report-brc-details/report-brc-details.component';
 import {HistoricalMeasurementsModule} from "../historical-measurements/historical-measurements.module";
 import {MeasurementsSampleModule} from "../measurements-sample/measurements-sample.module";
+import {ProductionLineStatusModule} from "../production-line-status/production-line-status.module";
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import {MeasurementsSampleModule} from "../measurements-sample/measurements-samp
   exports: [
   ],
     imports: [
-        CommonModule, SharedModule, ProductionLineModule, NgChartsModule, HistoricalMeasurementsModule, MeasurementsSampleModule
+        CommonModule, SharedModule, ProductionLineModule, NgChartsModule, HistoricalMeasurementsModule, MeasurementsSampleModule, ProductionLineStatusModule
     ]
 })
 export class ReportModule {
