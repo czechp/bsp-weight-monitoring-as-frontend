@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ChartConfiguration} from "chart.js";
+import 'chartjs-adapter-date-fns';
 
 export type ProductionLineStatusModel = {
   createdAt: string;
@@ -28,6 +29,15 @@ export class ProductionLineStatusChartComponent {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
+      x: {
+        type: 'time',
+        time: {
+          tooltipFormat: 'HH:mm dd.MM.yyyy'
+        },
+        ticks: {
+          callback: (value) => this.formatTimestamp(new Date(value as number).toISOString())
+        }
+      },
       y: {
         display: false,
         min: -0.5,
@@ -42,7 +52,7 @@ export class ProductionLineStatusChartComponent {
         intersect: false,
         mode: 'nearest',
         callbacks: {
-          title: (items) => items[0]?.label ?? '',
+          title: (items) => this.formatTimestamp(this.statuses[items[0]?.dataIndex]?.createdAt ?? ''),
           label: (context) => {
             const status = this.statuses[context.dataIndex];
             return `Status: ${status?.working ? 'włączony' : 'wyłączony'}`;
@@ -86,12 +96,13 @@ export class ProductionLineStatusChartComponent {
 
     this.noDataAvailable = false;
 
-    const labels = this.statuses.map(status => this.formatTimestamp(status.createdAt));
     const pointColors = this.statuses.map(status => status.working ? OK_COLOR : NOK_COLOR);
-    const data = this.statuses.map(status => status.working ? 2 : 0);
+    const data = this.statuses.map(status => ({
+      x: new Date(status.createdAt).getTime(),
+      y: status.working ? 2 : 0
+    }));
 
     this.chartData = {
-      labels,
       datasets: [
         {
           data,
