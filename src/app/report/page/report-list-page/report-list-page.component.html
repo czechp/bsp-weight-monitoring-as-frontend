@@ -6,7 +6,6 @@
        <label>Filtrowanie</label>
        <input placeholder="Wpisz nazwę linii lub produktu" type="text" formControlName="phrase" />
      </div>
-     <button class="button-ok">Filtruj</button>
    </form>
  </div>
   <app-report-list *ngIf="reports$ | async as reports" [reports]="reports" (reportClick)="navigateToDetails($event)"/>

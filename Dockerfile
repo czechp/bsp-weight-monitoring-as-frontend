@@ -15,4 +15,6 @@ RUN npm run build
 # Stage 2 - Serve with nginx
 FROM nginx:1.17.1-alpine
 COPY --from=builder /app/dist/rf-frontend /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
