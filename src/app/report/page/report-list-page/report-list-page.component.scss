@@ -1,0 +1,20 @@
+form {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3rem;
+  width: auto;
+}
+
+button {
+  width: 20rem;
+  margin-left: 15rem;
+}
+
+input {
+  width: 150%;
+}
+
+.fts-form{
+  display: flex;
+  justify-content: center;
+}
