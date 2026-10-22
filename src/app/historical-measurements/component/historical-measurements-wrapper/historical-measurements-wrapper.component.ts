@@ -57,6 +57,24 @@ export class HistoricalMeasurementsWrapperComponent {
   }
 
   protected downloadReport(dateRange: DateFilterRange) {
-
+    this.http.get(`${BACKEND_URL}/historical-measurements/file`, {
+      params: {
+        productionLineId: this.productionLineId,
+        from: dateRange.from,
+        to: dateRange.to
+      },
+      observe: 'response',
+      responseType: 'blob'
+    }).subscribe((response) => {
+      const disposition = response.headers.get('Content-Disposition');
+      const match = disposition?.match(/filename\*?=(?:UTF-8'')?"?([^";]+)"?/i);
+      const fileName = match ? decodeURIComponent(match[1]) : `historical-measurements-${this.productionLineId}.xlsx`;
+      const url = window.URL.createObjectURL(response.body as Blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+      window.URL.revokeObjectURL(url);
+    });
   }
 }
