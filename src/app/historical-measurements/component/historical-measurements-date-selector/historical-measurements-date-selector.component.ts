@@ -18,6 +18,9 @@ export class HistoricalMeasurementsDateSelectorComponent implements OnInit, OnCh
   @Output()
   dateRangeChanged = new EventEmitter<DateFilterRange>();
 
+  @Output()
+  downloadReport = new EventEmitter<DateFilterRange>();
+
   public readonly fromTimeOptions = Array.from({length: 24}, (_, hour) => this.formatTime(hour, 0));
   public readonly toTimeOptions = [...Array.from({length: 24}, (_, hour) => this.formatTime(hour, 0)), '23:59'];
 
@@ -52,14 +55,23 @@ export class HistoricalMeasurementsDateSelectorComponent implements OnInit, OnCh
     this.emitCurrentSelection();
   }
 
+  public downloadReportClick(): void {
+    const selectedRange = this.getSelectedRange();
+    this.downloadReport.emit(selectedRange);
+  }
+
   private emitCurrentSelection(): void {
+    const selectedRange = this.getSelectedRange();
+    this.dateRangeChanged.emit(selectedRange);
+  }
+
+  private getSelectedRange() {
     const value = this.dateSelectorForm.getRawValue();
     const selectedRange: DateFilterRange = {
       from: this.buildDateTimeString(value.fromDate, value.fromTime, 0, 0),
       to: this.buildDateTimeString(value.toDate, value.toTime, 0, 0)
     };
-
-    this.dateRangeChanged.emit(selectedRange);
+    return selectedRange;
   }
 
   public onFromTimeChange(value: string): void {

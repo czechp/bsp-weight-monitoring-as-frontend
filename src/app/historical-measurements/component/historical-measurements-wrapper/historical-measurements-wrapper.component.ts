@@ -55,4 +55,8 @@ export class HistoricalMeasurementsWrapperComponent {
         this.productionLineStatuses$.next(data);
       });
   }
+
+  protected downloadReport(dateRange: DateFilterRange) {
+
+  }
 }

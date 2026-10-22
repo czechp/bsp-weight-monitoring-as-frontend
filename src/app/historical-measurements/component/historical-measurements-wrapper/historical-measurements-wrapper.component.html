@@ -1,4 +1,4 @@
-<app-historical-measurements-date-selector (dateRangeChanged)="getMeasurements($event)" />
+<app-historical-measurements-date-selector (dateRangeChanged)="getMeasurements($event)" (downloadReport)="downloadReport($event)" />
 <h1>Pomiary</h1>
 <app-historical-measurements-chart *ngIf="measurements$ | async as measurements"  [productionLineMeasurements]="measurements" />
 <h1>Kalibracje</h1>
