@@ -4,12 +4,13 @@ export type AlertModel = {
   id: number;
   version: number;
   lineName: string;
-  averageWeight: number;
   alertType: AlertType;
   createdAt: Date;
   assigned: boolean;
   productUtilizationWay: ProductUtilizationWay;
   deviation: number;
+  dosingDevice: number;
+  measurementValue: number;
   deviationPercent: number;
   product: ProductModel;
 };

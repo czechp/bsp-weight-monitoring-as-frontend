@@ -4,11 +4,12 @@
     <th></th>
     <th>Data</th>
     <th>Linia</th>
+    <th>Numer lejka</th>
+    <th>Wartość pomiaru</th>
     <th>Produkt</th>
     <th>Waga min. [g]</th>
     <th>Waga referencyjna [g]</th>
     <th>Waga max. [g]</th>
-    <th>Średnia waga [g]</th>
     <th>Odchyłka [g]</th>
     <th>Odchyłka [%]</th>
     <th>Typ alertu</th>
@@ -22,11 +23,12 @@
     </td>
     <td>{{ alert.createdAt | localDateTime }}</td>
     <td>{{ alert.lineName }}</td>
+    <td>{{ alert.dosingDevice }}</td>
+    <td>{{ alert.measurementValue }}</td>
     <td>{{alert.product.productName}}</td>
     <td>{{alert.product.productMinimumWeight}}</td>
     <td>{{alert.product.productCorrectWeight}}</td>
     <td>{{alert.product.productMaximumWeight}}</td>
-    <td>{{ alert.averageWeight }}</td>
     <td>{{alert.deviation}}</td>
     <td>{{alert.deviationPercent}}</td>
     <td>{{ alert.alertType | alertType }}</td>
