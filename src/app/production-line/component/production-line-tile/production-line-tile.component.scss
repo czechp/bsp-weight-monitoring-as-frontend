@@ -109,12 +109,25 @@ hr {
   color: $color-ok;
 }
 
-.percent-ok{
+.percent-ok {
   font-size: large;
   color: $color-success;
 }
 
-.percent-nok{
+.percent-nok {
   font-size: large;
   color: $color-nok;
+}
+
+
+.space-between {
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line-working-icon{
+  color: $color-success;
 }

@@ -10,6 +10,10 @@
       </span>
     </span>
   </div>
+  <div class="space-between">
+    <span style="margin-bottom: .5rem">Praca modułu</span>
+    <fa-icon size="3x" icon="power-off" [ngClass]="{'line-working-icon':productionLine.lineActive}"/>
+  </div>
   <hr>
 
   <p class="section-main-title">Produkt</p>
@@ -75,9 +79,11 @@
     <div class="info-container-center">
       <p> Procentowa ilość poprawnych do niepoprawnych pomiarów [%]<br> <br>
         <span class="" title="Procentowy udział poprawnych do niepoprawnych produktów">
-        <span class="percent-ok">{{ (100 - productionLine.productionCounters.incorrectPercentage).toFixed(2) }} % </span>   -------------------------- <span
+        <span class="percent-ok">{{ (100 - productionLine.productionCounters.incorrectPercentage).toFixed(2) }}
+          % </span>   -------------------------- <span
           (click)="wrongProductOnClick()"
-          class="percent-nok wrong-product-link">{{ (productionLine.productionCounters.incorrectPercentage).toFixed(2) }} %</span>
+          class="percent-nok wrong-product-link">{{ (productionLine.productionCounters.incorrectPercentage).toFixed(2) }}
+          %</span>
       </span>
         <br>
       </p>
