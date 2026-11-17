@@ -6,6 +6,8 @@ export type ProductModel = {
   cupHeight: number;
   cupDiameter: number;
   cupWeight: number;
+  criticalThUp: number;
+  criticalThDown: number;
 };
 
 export type MeasurementModel = {

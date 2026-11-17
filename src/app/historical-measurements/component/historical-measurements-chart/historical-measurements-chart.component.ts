@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MeasurementsData} from "../../service/historical-measurements-state.service";
+import {Measurements, MeasurementsData} from "../../service/historical-measurements-state.service";
 import {ChartConfiguration} from "chart.js";
 
 export type ProductionLineMeasurements = {
@@ -18,6 +18,8 @@ export type Measurement = {
   maximumWeight: number;
   minimumWeight: number;
   timestamp: string;
+  criticalThUp: number;
+  criticalThDown: number;
 };
 
 @Component({
@@ -31,20 +33,8 @@ export class HistoricalMeasurementsChartComponent {
     datasets: []
   };
 
-  dosingDevices: Array<{id: number, label: string, visible: boolean, color: string}> = [];
-  private _selectedDosingDeviceId: number | null = null;
+  dosingDevices: Array<{ id: number, label: string, visible: boolean, color: string }> = [];
   noDataAvailable = false;
-
-  @Input() set selectedDosingDeviceId(value: number | null) {
-    this._selectedDosingDeviceId = value;
-    this.dosingDevices.forEach((device) => {
-      device.visible = true;
-    });
-    if (this.cachedData) {
-      this.updateChart();
-    }
-  }
-
   chartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
     maintainAspectRatio: false,
@@ -55,7 +45,7 @@ export class HistoricalMeasurementsChartComponent {
         mode: 'nearest',
         filter: (item) => {
           const label = item.dataset.label ?? '';
-          return !['Waga referencyjna', 'Waga min.', 'Waga max.'].includes(label);
+          return !['Waga referencyjna', 'Waga min.', 'Waga max.', 'Odchylenie technologiczne min', 'Odchylenie technologiczne max'].includes(label);
         },
         callbacks: {
           title: (items) => items[0]?.dataset?.label ?? 'Pomiary',
@@ -78,7 +68,6 @@ export class HistoricalMeasurementsChartComponent {
       intersect: false
     }
   };
-
   // Colors for different dosing devices
   private readonly colorPalette = [
     '#FF5C8A', '#00B8D9', '#7C4DFF', '#F9A826', '#00C853', '#FF6F61',
@@ -87,27 +76,19 @@ export class HistoricalMeasurementsChartComponent {
     '#7CB342', '#EF5350', '#5E35B1', '#FFB300', '#00ACC1', '#7E57C2',
     '#C0CA33', '#00A152', '#FB6D00', '#5C6BC0', '#E91E63', '#2E7D32'
   ];
-
-  private getColor(index: number): string {
-    return this.colorPalette[index % this.colorPalette.length];
-  }
-
-  private formatTimestamp(value: string): string {
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) {
-      return value;
-    }
-
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${hours}:${minutes} ${day}:${month}:${year}`;
-  }
-
   private cachedData: MeasurementsData | null = null;
+
+  private _selectedDosingDeviceId: number | null = null;
+
+  @Input() set selectedDosingDeviceId(value: number | null) {
+    this._selectedDosingDeviceId = value;
+    this.dosingDevices.forEach((device) => {
+      device.visible = true;
+    });
+    if (this.cachedData) {
+      this.updateChart();
+    }
+  }
 
   @Input() set measurementsData(data: ProductionLineMeasurements | MeasurementsData | null) {
     this.productionLineMeasurements = data;
@@ -163,6 +144,60 @@ export class HistoricalMeasurementsChartComponent {
     this.updateChart();
   }
 
+  toggleDosingDevice(deviceId: number): void {
+    const device = this.dosingDevices.find(d => d.id === deviceId);
+    if (device) {
+      device.visible = !device.visible;
+      this.updateChart();
+    }
+  }
+
+  private getColor(index: number): string {
+    return this.colorPalette[index % this.colorPalette.length];
+  }
+
+  // Builds a value-per-timePoint series that reflects actual threshold changes over time,
+  // carrying the last known value forward (and backfilling the start) so the line stays continuous.
+  private buildThresholdSeries(
+    measurements: Measurements[],
+    timePoints: string[],
+    selector: (m: Measurements) => number,
+    fallback: number
+  ): number[] {
+    const valueByTime = new Map<string, number>();
+    measurements.forEach(m => {
+      if (!valueByTime.has(m.createdAt)) {
+        valueByTime.set(m.createdAt, selector(m));
+      }
+    });
+
+    let lastValue: number | undefined;
+    const series = timePoints.map(time => {
+      if (valueByTime.has(time)) {
+        lastValue = valueByTime.get(time);
+      }
+      return lastValue;
+    });
+
+    const firstKnown = series.find(v => v !== undefined) ?? fallback;
+    return series.map(v => v ?? firstKnown);
+  }
+
+  private formatTimestamp(value: string): string {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return value;
+    }
+
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${hours}:${minutes} ${day}:${month}:${year}`;
+  }
+
   private toMeasurementsData(data: ProductionLineMeasurements | MeasurementsData | null): MeasurementsData | null {
     if (!data) {
       return null;
@@ -183,6 +218,8 @@ export class HistoricalMeasurementsChartComponent {
         referenceValue: measurement.correctWeight,
         minValue: measurement.minimumWeight,
         maxValue: measurement.maximumWeight,
+        criticalThUp: measurement.criticalThUp,
+        criticalThDown: measurement.criticalThDown,
         createdAt: measurement.timestamp || new Date().toISOString()
       }))
     );
@@ -190,21 +227,17 @@ export class HistoricalMeasurementsChartComponent {
     const referenceValues = measurements.map(m => m.referenceValue);
     const minValues = measurements.map(m => m.minValue);
     const maxValues = measurements.map(m => m.maxValue);
+    const criticalThUpValues = measurements.map(m => m.criticalThUp);
+    const criticalThDownValues = measurements.map(m => m.criticalThDown);
 
     return {
       measurements,
       referenceValue: referenceValues[0] ?? 0,
       minValue: minValues.length ? Math.min(...minValues) : 0,
-      maxValue: maxValues.length ? Math.max(...maxValues) : 0
+      maxValue: maxValues.length ? Math.max(...maxValues) : 0,
+      criticalThUp: criticalThUpValues[0] ?? 0,
+      criticalThDown: criticalThDownValues[0] ?? 0
     };
-  }
-
-  toggleDosingDevice(deviceId: number): void {
-    const device = this.dosingDevices.find(d => d.id === deviceId);
-    if (device) {
-      device.visible = !device.visible;
-      this.updateChart();
-    }
   }
 
   private updateChart(): void {
@@ -253,9 +286,12 @@ export class HistoricalMeasurementsChartComponent {
     });
 
     // Add reference lines
-    const referenceValues = timePoints.map(() => data.referenceValue);
-    const minValues = timePoints.map(() => data.minValue);
-    const maxValues = timePoints.map(() => data.maxValue);
+    const referenceValues = this.buildThresholdSeries(data.measurements, timePoints, m => m.referenceValue, data.referenceValue);
+    const minValues = this.buildThresholdSeries(data.measurements, timePoints, m => m.minValue, data.minValue);
+    const maxValues = this.buildThresholdSeries(data.measurements, timePoints, m => m.maxValue, data.maxValue);
+    const criticalThUpValues = this.buildThresholdSeries(data.measurements, timePoints, m => m.criticalThUp, data.criticalThUp);
+    const criticalThDownValues = this.buildThresholdSeries(data.measurements, timePoints, m => m.criticalThDown, data.criticalThDown);
+    const criticalThColor = '#8E24AA';
 
     datasets.push(
       {
@@ -274,10 +310,10 @@ export class HistoricalMeasurementsChartComponent {
       },
       {
         data: minValues,
-        label: 'Waga min.',
-        borderColor: 'orange',
+        label: 'Waga minimalna',
+        borderColor: 'red',
         backgroundColor: 'transparent',
-        pointBackgroundColor: 'orange',
+        pointBackgroundColor: 'red',
         pointBorderColor: 'white',
         tension: 0,
         fill: false,
@@ -288,10 +324,38 @@ export class HistoricalMeasurementsChartComponent {
       },
       {
         data: maxValues,
-        label: 'Waga max.',
+        label: 'Waga maksymalna',
         borderColor: 'red',
         backgroundColor: 'transparent',
         pointBackgroundColor: 'red',
+        pointBorderColor: 'white',
+        tension: 0,
+        fill: false,
+        pointRadius: 0,
+        pointHitRadius: 0,
+        borderWidth: 2,
+        borderDash: [5, 5]
+      },
+      {
+        data: criticalThUpValues,
+        label: 'Maksimum krytyczne',
+        borderColor: criticalThColor,
+        backgroundColor: 'transparent',
+        pointBackgroundColor: criticalThColor,
+        pointBorderColor: 'white',
+        tension: 0,
+        fill: false,
+        pointRadius: 0,
+        pointHitRadius: 0,
+        borderWidth: 2,
+        borderDash: [5, 5]
+      },
+      {
+        data: criticalThDownValues,
+        label: 'Minimum krytyczne',
+        borderColor: criticalThColor,
+        backgroundColor: 'transparent',
+        pointBackgroundColor: criticalThColor,
         pointBorderColor: 'white',
         tension: 0,
         fill: false,

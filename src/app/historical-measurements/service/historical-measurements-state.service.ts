@@ -12,6 +12,8 @@ export type Measurements = {
   referenceValue: number;
   minValue: number;
   maxValue: number;
+  criticalThUp: number;
+  criticalThDown: number;
   createdAt: string;
 }
 
@@ -20,6 +22,8 @@ export type MeasurementsData = {
   referenceValue: number;
   minValue: number;
   maxValue: number;
+  criticalThUp: number;
+  criticalThDown: number;
 }
 
 export type HistoricalMeasurementsFilterForm = {
@@ -36,13 +40,17 @@ class HistoricalMeasurementsStateService {
     measurements: [],
     referenceValue: 0,
     minValue: 0,
-    maxValue: 0
+    maxValue: 0,
+    criticalThUp: 0,
+    criticalThDown: 0
   };
   measurements$ = new BehaviorSubject<MeasurementsData>({
     measurements: [],
     referenceValue: 0,
     minValue: 0,
-    maxValue: 0
+    maxValue: 0,
+    criticalThUp: 0,
+    criticalThDown: 0
   });
 
   constructor(private httpService: HistoricalMeasurementsHttpService, private activatedRoute: ActivatedRoute) {
@@ -69,6 +77,8 @@ class HistoricalMeasurementsStateService {
             referenceValue: timePoint.product.productCorrectWeight,
             minValue: timePoint.product.productMinimumWeight,
             maxValue: timePoint.product.productMaximumWeight,
+            criticalThUp: timePoint.product.criticalThUp,
+            criticalThDown: timePoint.product.criticalThDown,
             createdAt: timePoint.createdAt
           });
         });
@@ -78,7 +88,9 @@ class HistoricalMeasurementsStateService {
         measurements: allMeasurements,
         referenceValue: data[0]?.product.productCorrectWeight || 0,
         minValue: data[0]?.product.productMinimumWeight || 0,
-        maxValue: data[0]?.product.productMaximumWeight || 0
+        maxValue: data[0]?.product.productMaximumWeight || 0,
+        criticalThUp: data[0]?.product.criticalThUp || 0,
+        criticalThDown: data[0]?.product.criticalThDown || 0
       };
 
       this.measurements$.next(this.measurementsData);
