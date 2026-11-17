@@ -1,8 +1,26 @@
 <app-page>
   <ng-container *ngIf="productionLines$ | async as lines">
+    <div class="line-filter">
+      <button type="button"
+              class="line-filter__btn"
+              [class.line-filter__btn--active]="(selectedLineId$ | async) === null"
+              (click)="selectLine(null)">
+        Wszystkie
+      </button>
+      <button type="button"
+              *ngFor="let item of lines"
+              class="line-filter__btn"
+              [class.line-filter__btn--active]="(selectedLineId$ | async) === item.id"
+              (click)="selectLine(item.id)">
+        {{item.name}}
+      </button>
+    </div>
+
     <ng-container *ngFor="let item of lines">
-      <h1>{{item.name}}</h1>
-      <app-historical-measurements-wrapper [productionLineId]="item.id" />
+      <ng-container *ngIf="(selectedLineId$ | async) === null || (selectedLineId$ | async) === item.id">
+        <h1>{{item.name}}</h1>
+        <app-historical-measurements-wrapper [productionLineId]="item.id" />
+      </ng-container>
     </ng-container>
 
   </ng-container>

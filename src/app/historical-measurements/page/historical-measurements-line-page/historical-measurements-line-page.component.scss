@@ -5,3 +5,39 @@ h1{
   font-weight: bold;
 
 }
+
+.line-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+
+  &__btn {
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid #3b82f6 !important;
+    color: #3b82f6 !important;
+    font-weight: 700;
+    font: inherit;
+    padding-inline: 1rem;
+    border-radius: 0.5rem;
+    height: 2.6rem;
+    min-height: 2.6rem;
+    width: 10rem;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    &--active {
+      background: #3b82f6 !important;
+      color: #fff !important;
+    }
+  }
+}

@@ -18,12 +18,17 @@ interface OnInit {
 })
 export class HistoricalMeasurementsLinePageComponent implements OnInit {
   productionLines$ = new BehaviorSubject<ProductionLineSimpleModel[] | null>(null);
+  selectedLineId$ = new BehaviorSubject<number | null>(null);
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
     this.getProductionLines();
+  }
+
+  selectLine(lineId: number | null): void {
+    this.selectedLineId$.next(lineId);
   }
 
   private getProductionLines() {
