@@ -78,7 +78,7 @@
     </div>
     <div class="info-container-center">
       <p> Procentowa ilość poprawnych do niepoprawnych pomiarów [%]<br> <br>
-        <span class="" title="Procentowy udział poprawnych do niepoprawnych produktów">
+        <span class="" title="Procentowy udział poprawnych do niepoprawnych produktów w aktualnej zmianie">
         <span class="percent-ok">{{ (100 - productionLine.productionCounters.incorrectPercentage).toFixed(2) }}
           % </span>   -------------------------- <span
           (click)="wrongProductOnClick()"
@@ -108,7 +108,7 @@
   </div>
   <hr>
 
-  <p class="section-main-title">Parafina</p>
+  <p class="section-main-title">Parafina (szacowana)</p>
   <div class="info-container">
     <p>Zużycie parafiny<br><br> <br>
       <span title="Rzeczywiste zużycie parafiny na tej zmianie">
